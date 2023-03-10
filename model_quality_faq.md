@@ -16,7 +16,6 @@ This documentation covers the knowledge, tips and good practice about training a
 - Object detection
   - Bounding boxes being too small compared with image size can be problematic for training. Taking a 1080P image (1920x1080) as an example, it would be helpful to keep your bounding boxes larger than (40x20). Note that this is just an example, for some problem, it could be better to have bounding boxes larger than (80x40) for 1080P images.
 
-
 ## Training
 
 - Specifing sufficient budget is key to good model quality. With insufficient budget, service can be limited in finding the best model for you
