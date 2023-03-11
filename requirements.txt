@@ -1,0 +1,5 @@
+azure-storage-blob
+azure-cognitiveservices-vision-customvision
+cffi
+requests
+tqdm
