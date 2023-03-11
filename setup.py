@@ -23,7 +23,10 @@ setuptools.setup(name='cognitive-service-vision-model-customization-python-sampl
                  packages=setuptools.find_packages(),
                  install_requires=[
                      'requests',
-                     'tqdm'
+                     'tqdm',
+                     'azure-storage-blob',
+                     'azure-cognitiveservices-vision-customvision',
+                     'cffi'
                  ],
                  classifiers=[
                      'Development Status :: 4 - Beta',

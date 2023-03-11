@@ -32,7 +32,7 @@ Some common failures:
   - Data is not enough: provide more data should help
   - Data is of bad quality: check if your images are of very low resolution, aspect ratio being very extreme, or annotations are wrong
 - **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training. Specify more budget please
-- **datasetCorrupt**: Usually this is due to the fact your provided images are not accessible or annotation file is of wrong format. For annotation check, you can check `tutorial.ipynb` for annotation format documentation and run `check_coco_annotations.py` for a quick check. You can check the error message returned from the API call response for dataset format violation as well
+- **datasetCorrupt**: Usually this is due to the fact your provided images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
 - **datasetNotFound**: dataset cannot be found
 - **unknown**: It could be our system's issue, please reach out to us for investigation
 
@@ -59,7 +59,7 @@ No, model customization service is a low-code AutoML training system that takes 
 
 ## Can I export my model after training?
 
-Not for now, currently only cloud inference via prediction API is supported (see `tutorial.ipynb` for example). We have the plan of supporting container export for future.
+Not for now, currently only cloud inference via prediction API is supported (see [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for example). We have the plan of supporting container export for future.
 
 ## What are the metrics used for evaluating the models?
 
