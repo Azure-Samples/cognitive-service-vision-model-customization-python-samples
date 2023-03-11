@@ -2,7 +2,7 @@
 
 |                                     | Generic IC                      | Generic OD                      |
 | ----------------------------------- | ------------------------------- | ------------------------------- |
-| Max # training hours*               | 336 (14 compute days)           | 1440 (60 compute days)          |
+| Max # training hours*               | 336 (14 compute days)           | 1344 (60 compute days)          |
 | Max # training images               | 1,000,000                       | 200,000                         |
 | Max # evaluation images             | 100,000                         | 100,000                         |
 | Min # training images per category  | 2                               | 2                               |
