@@ -20,7 +20,7 @@ Note that the budget specified and actual charged training time are actual **com
 - The service sometimes trains with multi-GPU depending on your data, which shortens wall-clock training time
 - The service sometimes trains multiple exploration trials on multiple GPUs at the same time
 - The service sometimes uses premier/faster GPU skus to train
-- The service decided there is need to explore futher before budget runs out
+- The service decided there is no need to explore futher before budget runs out
 
 The first three speed up training at the cost of using more budget in certain wall-clock time.
 
