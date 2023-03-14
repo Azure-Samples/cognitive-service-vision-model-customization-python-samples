@@ -13,6 +13,7 @@
 | Max image size (Training)           | 20MB                            | 20MB                            |
 | Max image size (Prediction)         | Sync: 6MB, Batch: 20MB          | Sync: 6MB, Batch: 20MB          |
 | Max image width/height (Training)   | 10,240                          | 10,240                          |
+| Min image width/height (Training)   | 10                              | 10                              |
 | Min image width/height (Prediction) | 50                              | 50                              |
 | Available regions                   | West US 2, East US, West Europe | West US 2, East US, West Europe |
 | Accepted image types                | jpg, png, bmp, gif, jpeg        | jpg, png, bmp, gif, jpeg        |
