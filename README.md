@@ -15,3 +15,12 @@ Once data is exported, you can use it with Cognitive Service Vision Model Custom
 ## FAQ
 
 For frequently asked questions or quick trouble shoot, checkout [FAQ](./docs/faq.md), including things like trouble shooting guide, quota information, etc.
+
+## RESTful API & SDK
+
+If you would like to exlpore more functionalities offered in Cognitive Service Vision, you can refer to [this link](https://learn.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?pivots=programming-language-python&tabs=visual-studio%2Cwindows) for a quick start.
+
+For more documentation,
+
+- API: [Here](https://learn.microsoft.com/en-us/rest/api/computervision/2023-02-01-preview/models)
+- SDK: [Here](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples/python/image-analysis) (note that model customization training is not supported in this SDK yet, while prediction is supported.)
