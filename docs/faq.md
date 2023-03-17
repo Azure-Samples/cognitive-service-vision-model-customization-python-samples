@@ -65,6 +65,10 @@ Not for now, currently only cloud inference via prediction API is supported (see
 
 `https://github.com/microsoft/vision-evaluation` contains the metrics code we use for model evaluation.
 
+## What is the reported evaluation result when an evaluation set is not provided?
+
+During training, a random subset $S$ is held out from training data for hyper-parameter tuning, UVS chooses the optimal hyper-parameters which achieve the best evaluation metrics $M$ computed on $S$. Last, all training data (including $S$) is used for a final train with the optimal hyper-parameters. If an evaluation set is not provided, $M$ is reported as evaluation result for model performance estimation.
+
 ## How many images are required for a reasonble/good/best model quality?
 
 Short answer is the more the better.
