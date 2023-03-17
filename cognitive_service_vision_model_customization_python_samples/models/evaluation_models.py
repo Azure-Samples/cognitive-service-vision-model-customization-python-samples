@@ -37,13 +37,13 @@ class Evaluation:
 
 class EvaluationResponse(Evaluation):
     def __init__(self, name: str, model_name: str, evaluationParams: EvaluationParameters, status: EvaluationStatus, created_date_time: str,
-                 updated_date_time: str, model_performance: dict, error_code: str) -> None:
+                 updated_date_time: str, model_performance: dict, error: Error) -> None:
         super().__init__(name, model_name, evaluationParams['testDatasetName'])
         self.status = status
         self.created_date_time = created_date_time
         self.updated_date_time = updated_date_time
         self.model_performance = model_performance
-        self.error_code = error_code
+        self.error = error
 
     @staticmethod
     def from_response(json):
