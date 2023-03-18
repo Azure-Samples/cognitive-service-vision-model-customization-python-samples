@@ -76,7 +76,7 @@ def image_check(image: dict, max_id: int, quota_limit: QuotaLimit):
     _check(('coco_url' in image) or ('absolute_url' in image), f'Neither "coco_url" nor "absolute_url" present. {img_msg}.')
     for key in ['width', 'height']:
         dim = image[key]
-        _check(dim >= quota_limit.min_image_dim and dim <= quota_limit.max_image_dim, f'width must be present and in ({quota_limit.min_image_dim}, {quota_limit.max_image_dim}]. {img_msg}.')
+        _check(dim >= quota_limit.min_image_dim and dim <= quota_limit.max_image_dim, f'width {dim} must be present and in [{quota_limit.min_image_dim}, {quota_limit.max_image_dim}]. {img_msg}.')
     _id_value_range_check(image['id'], max_id, 'id', img_msg)
 
 
@@ -105,7 +105,7 @@ def images_check(images: List, quota_limit: QuotaLimit):
     _check(len(set([img['id'] for img in images])) == len(images), 'Duplicate image ids exist.')
 
     for image in tqdm(images, 'Checking "images..."'):
-        image_check(image, len(images))
+        image_check(image, len(images), quota_limit)
 
 
 def categories_check(categories: List, quota_limit: QuotaLimit):
