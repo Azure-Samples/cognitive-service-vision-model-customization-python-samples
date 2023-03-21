@@ -29,7 +29,7 @@
             "coco_url": "https://www.example.com/4.jpg"
         }
     ],
-    "categories":[
+    "categories": [
         {
             "id": 1,
             "name": "cat"
@@ -39,7 +39,7 @@
             "name": "dog"
         }
     ],
-    "annotations":[
+    "annotations": [
         {
             "id": 1,
             "image_id": 1,
