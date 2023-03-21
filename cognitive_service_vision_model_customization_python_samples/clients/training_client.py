@@ -23,7 +23,7 @@ class TrainingClient(Client):
         self.request_delete(f'models/{name}')
 
     def evaluate_model(self, evaluation: Evaluation):
-        self.request_put(f'models/{evaluation.model_name}/evaluations/{evaluation.name}', json=evaluation.eval_params.params)
+        self.request_put(f'models/{evaluation.model_name}/evaluations/{evaluation.name}', json=evaluation.params)
 
     def query_model_evaluation(self, model_name: str, evaluation_name: str) -> EvaluationResponse:
         json_response = self.request_get(f'models/{model_name}/evaluations/{evaluation_name}')
@@ -68,6 +68,7 @@ class TrainingClient(Client):
 
     def _wait_for_completion(self, query, ending_states, check_wait_in_secs: int = 60) -> ModelResponse:
         start_time = time.time()
+        total_elapsed = 0
         while True:
             entity, status = query()
             if status in ending_states:
