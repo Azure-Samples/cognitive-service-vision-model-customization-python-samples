@@ -32,7 +32,7 @@ Some common failures:
   - Data is not enough: provide more data should help
   - Data is of bad quality: check if your images are of very low resolution, aspect ratio being very extreme, or annotations are wrong
 - **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training. Specify more budget please
-- **datasetCorrupt**: Usually this is due to the fact your provided images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
+- **datasetCorrupt**: Usually this is due to the fact that your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
 - **datasetNotFound**: dataset cannot be found
 - **unknown**: It could be our system's issue, please reach out to us for investigation
 
@@ -43,8 +43,8 @@ Below are the possible reasons:
 - **internalServerError**: An unknown error occurred. Please try again later.
 - **modelNotFound**: The specified model was not found.
 - **datasetNotFound**: The specified dataset was not found.
-- **datasetAnnotationsInvalid**: An error occurred while trying to download or parse the ground truth annotations associated with the test dataset.
-- **datasetEmpty**: The test dataset did not contain any ground truth annotations.
+- **datasetCorrupt**: Usually this is due to the fact your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well.
+- **incorrectModelKind**: Model kind is not compatible to be evaluated on the selected dataset, e.g. evaluate a classification model on a detection dataset.
 
 ## Why does my dataset registery fail?
 

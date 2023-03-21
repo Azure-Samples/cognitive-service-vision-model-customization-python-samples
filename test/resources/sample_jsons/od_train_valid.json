@@ -1,0 +1,38 @@
+{
+    "images": [
+        {
+            "id": 1,
+            "file_name": "1.jpg",
+            "width": 10,
+            "height": 10,
+            "coco_url": "https://www.example.com/1.jpg"
+        },
+        {
+            "id": 2,
+            "file_name": "2.jpg",
+            "width": 10,
+            "height": 10,
+            "coco_url": "https://www.example.com/2.jpg"
+        }
+    ],
+    "categories":[
+        {
+            "id": 1,
+            "name": "cat"
+        }
+    ],
+    "annotations":[
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [0, 0, 0.3, 0.4]
+        },
+        {
+            "id": 2,
+            "image_id": 2,
+            "category_id": 1,
+            "bbox": [0, 0, 0.3, 0.4]
+        }
+    ]
+}
