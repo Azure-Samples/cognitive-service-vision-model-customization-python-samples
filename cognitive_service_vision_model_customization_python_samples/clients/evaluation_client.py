@@ -23,7 +23,7 @@ class EvaluationClient(Client):
     def wait_for_completion(self, name: str, model_name: str, check_wait_in_secs: int = 60) -> EvaluationResponse:
         start_time = time.time()
         while True:
-            eval_run = self.query_model(name, model_name)
+            eval_run = self.query_run(name, model_name)
             status = eval_run.status
             if status in [EvaluationStatus.FAILED, EvaluationStatus.SUCCEEDED]:
                 break
