@@ -1,0 +1,536 @@
+{
+    "Positions": [
+        {
+            "Id": "0001",
+            "ProductId": "0006",
+            "FixtureId": "0001",
+            "X": 1.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0002",
+            "ProductId": "0006",
+            "FixtureId": "0001",
+            "X": 6.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0003",
+            "ProductId": "0006",
+            "FixtureId": "0001",
+            "X": 11.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0004",
+            "ProductId": "0006",
+            "FixtureId": "0001",
+            "X": 16.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0005",
+            "ProductId": "0008",
+            "FixtureId": "0001",
+            "X": 21.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0006",
+            "ProductId": "0008",
+            "FixtureId": "0001",
+            "X": 26.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0007",
+            "ProductId": "0009",
+            "FixtureId": "0001",
+            "X": 31.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0008",
+            "ProductId": "0009",
+            "FixtureId": "0001",
+            "X": 36.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0009",
+            "ProductId": "0009",
+            "FixtureId": "0001",
+            "X": 41.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0010",
+            "ProductId": "0007",
+            "FixtureId": "0001",
+            "X": 46.0,
+            "Y": 61.6
+        },
+        {
+            "Id": "0011",
+            "ProductId": "0013",
+            "FixtureId": "0002",
+            "X": 1.0,
+            "Y": 49.6
+        },
+        {
+            "Id": "0012",
+            "ProductId": "0012",
+            "FixtureId": "0002",
+            "X": 6.0,
+            "Y": 49.6
+        },
+        {
+            "Id": "0013",
+            "ProductId": "0012",
+            "FixtureId": "0002",
+            "X": 11.0,
+            "Y": 49.6
+        },
+        {
+            "Id": "0014",
+            "ProductId": "0012",
+            "FixtureId": "0002",
+            "X": 16.0,
+            "Y": 49.6
+        },
+        {
+            "Id": "0015",
+            "ProductId": "0001",
+            "FixtureId": "0002",
+            "X": 21.1,
+            "Y": 49.6
+        },
+        {
+            "Id": "0016",
+            "ProductId": "0001",
+            "FixtureId": "0002",
+            "X": 26.2,
+            "Y": 49.6
+        },
+        {
+            "Id": "0017",
+            "ProductId": "0001",
+            "FixtureId": "0002",
+            "X": 31.3,
+            "Y": 49.6
+        },
+        {
+            "Id": "0018",
+            "ProductId": "0001",
+            "FixtureId": "0002",
+            "X": 36.4,
+            "Y": 49.6
+        },
+        {
+            "Id": "0019",
+            "ProductId": "0001",
+            "FixtureId": "0002",
+            "X": 41.5,
+            "Y": 49.6
+        },
+        {
+            "Id": "0020",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 1.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0021",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 6.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0022",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 11.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0023",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 16.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0024",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 21.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0025",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 26.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0026",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 31.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0027",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 36.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0028",
+            "ProductId": "0011",
+            "FixtureId": "0003",
+            "X": 41.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0029",
+            "ProductId": "0010",
+            "FixtureId": "0003",
+            "X": 46.0,
+            "Y": 37.6
+        },
+        {
+            "Id": "0030",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 5.0,
+            "Y": 26.6
+        },
+        {
+            "Id": "0031",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 9.6,
+            "Y": 26.6
+        },
+        {
+            "Id": "0032",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 14.2,
+            "Y": 26.6
+        },
+        {
+            "Id": "0033",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 18.8,
+            "Y": 26.6
+        },
+        {
+            "Id": "0034",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 23.4,
+            "Y": 26.6
+        },
+        {
+            "Id": "0035",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 28.0,
+            "Y": 26.6
+        },
+        {
+            "Id": "0036",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 32.6,
+            "Y": 26.6
+        },
+        {
+            "Id": "0037",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 37.2,
+            "Y": 26.6
+        },
+        {
+            "Id": "0038",
+            "ProductId": "0005",
+            "FixtureId": "0004",
+            "X": 41.8,
+            "Y": 26.6
+        },
+        {
+            "Id": "0039",
+            "ProductId": "0002",
+            "FixtureId": "0005",
+            "X": 0.0,
+            "Y": 14.74
+        },
+        {
+            "Id": "0040",
+            "ProductId": "0002",
+            "FixtureId": "0005",
+            "X": 8.3,
+            "Y": 14.74
+        },
+        {
+            "Id": "0041",
+            "ProductId": "0002",
+            "FixtureId": "0005",
+            "X": 16.6,
+            "Y": 14.74
+        },
+        {
+            "Id": "0042",
+            "ProductId": "0002",
+            "FixtureId": "0005",
+            "X": 24.9,
+            "Y": 14.74
+        },
+        {
+            "Id": "0043",
+            "ProductId": "0002",
+            "FixtureId": "0005",
+            "X": 33.2,
+            "Y": 14.74
+        },
+        {
+            "Id": "0044",
+            "ProductId": "0002",
+            "FixtureId": "0005",
+            "X": 41.5,
+            "Y": 14.74
+        },
+        {
+            "Id": "0045",
+            "ProductId": "0003",
+            "FixtureId": "0005",
+            "X": 0.0,
+            "Y": 12.31
+        },
+        {
+            "Id": "0046",
+            "ProductId": "0003",
+            "FixtureId": "0005",
+            "X": 8.3,
+            "Y": 12.31
+        },
+        {
+            "Id": "0047",
+            "ProductId": "0003",
+            "FixtureId": "0005",
+            "X": 16.6,
+            "Y": 12.31
+        },
+        {
+            "Id": "0048",
+            "ProductId": "0003",
+            "FixtureId": "0005",
+            "X": 24.9,
+            "Y": 12.31
+        },
+        {
+            "Id": "0049",
+            "ProductId": "0003",
+            "FixtureId": "0005",
+            "X": 33.2,
+            "Y": 12.31
+        },
+        {
+            "Id": "0050",
+            "ProductId": "0003",
+            "FixtureId": "0005",
+            "X": 41.5,
+            "Y": 12.31
+        },
+        {
+            "Id": "0051",
+            "ProductId": "0002",
+            "FixtureId": "0006",
+            "X": 0.0,
+            "Y": 1.74
+        },
+        {
+            "Id": "0052",
+            "ProductId": "0002",
+            "FixtureId": "0006",
+            "X": 8.2,
+            "Y": 1.74
+        },
+        {
+            "Id": "0053",
+            "ProductId": "0004",
+            "FixtureId": "0006",
+            "X": 16.4,
+            "Y": 1.4
+        },
+        {
+            "Id": "0054",
+            "ProductId": "0004",
+            "FixtureId": "0006",
+            "X": 20.69,
+            "Y": 1.4
+        },
+        {
+            "Id": "0055",
+            "ProductId": "0004",
+            "FixtureId": "0006",
+            "X": 24.98,
+            "Y": 1.4
+        },
+        {
+            "Id": "0056",
+            "ProductId": "0004",
+            "FixtureId": "0006",
+            "X": 29.27,
+            "Y": 1.4
+        },
+        {
+            "Id": "0057",
+            "ProductId": "0002",
+            "FixtureId": "0006",
+            "X": 33.56,
+            "Y": 1.74
+        },
+        {
+            "Id": "0058",
+            "ProductId": "0002",
+            "FixtureId": "0006",
+            "X": 41.76,
+            "Y": 1.74
+        }
+    ],
+    "Fixtures": [
+        {
+            "Id": "0001",
+            "H": 1.7,
+            "W": 50.0,
+            "X": 0.0,
+            "Y": 69.4
+        },
+        {
+            "Id": "0002",
+            "H": 1.7,
+            "W": 50.0,
+            "X": 0.0,
+            "Y": 57.4
+        },
+        {
+            "Id": "0003",
+            "H": 1.7,
+            "W": 50.0,
+            "X": 0.0,
+            "Y": 45.4
+        },
+        {
+            "Id": "0004",
+            "H": 1.7,
+            "W": 50.0,
+            "X": 0.0,
+            "Y": 34.4
+        },
+        {
+            "Id": "0005",
+            "H": 1.7,
+            "W": 50.0,
+            "X": 0.0,
+            "Y": 22.4
+        },
+        {
+            "Id": "0006",
+            "H": 1.7,
+            "W": 50.0,
+            "X": 0.0,
+            "Y": 9.4
+        }
+    ],
+    "Products": [
+        {
+            "Id": "0006",
+            "Name": "Triscuit Cracked Pepper & Olive Oil Crackers",
+            "W": 4.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0008",
+            "Name": "Triscuit Roasted Garlic Crackers",
+            "W": 4.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0009",
+            "Name": "Triscuit Rosemary & Olive Oil Crackers",
+            "W": 4.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0007",
+            "Name": "Triscuit Crackers",
+            "W": 2.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0013",
+            "Name": "Wheat Thins Sundried Tomato & Basil Crackers",
+            "W": 4.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0012",
+            "Name": "Wheat Thins Sundried Hint of Salt Crackers",
+            "W": 4.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0001",
+            "Name": "Chicken In A Biskit Crackers",
+            "W": 5.0,
+            "H": 7.8
+        },
+        {
+            "Id": "0011",
+            "Name": "Wheat Thins Original Crackers",
+            "W": 4.9,
+            "H": 7.8
+        },
+        {
+            "Id": "0010",
+            "Name": "Wheat Thins Crackers",
+            "W": 2.5,
+            "H": 7.8
+        },
+        {
+            "Id": "0005",
+            "Name": "Tate's Bake Shop Chocolate Chip Cookies",
+            "W": 4.5,
+            "H": 7.8
+        },
+        {
+            "Id": "0002",
+            "Name": "Nabisco Ritz Original Classic Crackers",
+            "W": 8.2,
+            "H": 7.66
+        },
+        {
+            "Id": "0003",
+            "Name": "Nabisco Ritz Original Classic Crackers Side",
+            "W": 8.2,
+            "H": 2.43
+        },
+        {
+            "Id": "0004",
+            "Name": "Ritz Original Crackers - Fresh Stacks",
+            "W": 4.29,
+            "H": 8.0
+        }
+    ],
+    "Width": 50.0,
+    "Height": 72.0
+}
