@@ -47,7 +47,7 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     return resized, dim
 
 
-def rectify_single_image(intput_path):
+def select_four_corners(intput_path):
     org_img = cv2.imread(intput_path)
     if org_img.shape[0] > org_img.shape[1]:
         img, dim = image_resize(org_img, height=1024)
@@ -82,6 +82,7 @@ def convert_to_control_points_format(corner_points):
             "y": corner_points[3][1]
         }
     }
+
     return {'ControlPonts': control_points}
 
 
@@ -91,7 +92,7 @@ def main():
 
     args = parser.parse_args()
 
-    payload = convert_to_control_points_format(rectify_single_image(args.input_filename))
+    payload = convert_to_control_points_format(select_four_corners(args.input_filename))
     print(json.dumps(payload, indent=4))
 
 

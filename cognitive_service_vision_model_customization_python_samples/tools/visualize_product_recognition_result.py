@@ -3,7 +3,7 @@ import json
 import argparse
 
 
-def visualize_result(json_filename, image_filename, output_filename, theshold=0.3):
+def visualize_recognition_result(json_filename, image_filename, output_filename, theshold=0.3):
     # Load the prediction result
     with open(json_filename, 'r') as f:
         result = json.load(f)
@@ -29,7 +29,7 @@ def visualize_result(json_filename, image_filename, output_filename, theshold=0.
     cv2.imwrite(output_filename, img)
 
 
-def main():
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Visualize prediction results from JSON file and image file.')
     parser.add_argument('result_filename', type=str, help='JSON file containing the prediction results.')
     parser.add_argument('image_filename', type=str, help='Image file used for predictions.')
@@ -38,8 +38,4 @@ def main():
     
     args = parser.parse_args()
 
-    visualize_result(args.result_filename, args.image_filename, args.output_filename, args.threshold)
-
-
-if __name__ == '__main__':
-    main()
+    visualize_recognition_result(args.result_filename, args.image_filename, args.output_filename, args.threshold)
