@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class Client:
-    def __init__(self, resource_type, resource_name: str, multi_service_endpoint, resource_key: str, api_version: str='2023-02-01-preview') -> None:
+    def __init__(self, resource_type, resource_name: str, multi_service_endpoint, resource_key: str, api_version: str='2023-04-01-preview') -> None:
         resource_type = ResourceType(resource_type) if isinstance(resource_type, str) else resource_type
 
         if resource_type == ResourceType.MULTI_SERVICE_RESOURCE:
@@ -49,6 +49,10 @@ class Client:
         params = params or {}
         headers = dict(self._headers, **{'Content-Type': content_type}) if content_type else self._headers
         r = requests.post(self._construct_url(path), data=data, params=dict(self._params, **params), headers=headers)
+
+        if r.headers['Content-Type'] == 'image/jpeg':
+            return r.content
+
         return self._get_json_response(r)
 
     def request_patch(self, path, json):

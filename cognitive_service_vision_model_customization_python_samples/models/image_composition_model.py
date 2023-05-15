@@ -1,3 +1,4 @@
+import json
 from typing import List
 from urllib.parse import urlparse
 
@@ -7,10 +8,10 @@ class NormalizedCoordinate:
         self.x = x
         self.y = y
 
-    def to_json(self) -> dict:
+    def to_dict(self) -> dict:
         return {
-            "x": self.x,
-            "y": self.y
+            'x': self.x,
+            'y': self.y
         }
 
 
@@ -22,19 +23,19 @@ class ImageRectificationControlPoints:
         self.bottom_left = bottom_left
         self.bottom_right = bottom_right
 
-    def to_json(self) -> dict:
+    def to_dict(self) -> dict:
         return {
-            "topLeft": self.top_left.to_json(),
-            "topRight": self.top_right.to_json(),
-            "bottomLeft": self.bottom_left.to_json(),
-            "bottomRight": self.bottom_right.to_json()
+            'topLeft': self.top_left.to_dict(),
+            'topRight': self.top_right.to_dict(),
+            'bottomLeft': self.bottom_left.to_dict(),
+            'bottomRight': self.bottom_right.to_dict()
         }
 
 
 class ImageRectificationRequest:
     def __init__(self, url: str, control_points: ImageRectificationControlPoints) -> None:
         if not self.is_valid_url(url):
-            raise ValueError("The image URL must be a valid HTTP or HTTPS URL.")
+            raise ValueError('The image URL must be a valid HTTP or HTTPS URL.')
 
         self.url = url
         self.control_points = control_points
@@ -46,18 +47,18 @@ class ImageRectificationRequest:
         except ValueError:
             return False
 
-    def to_json(self) -> dict:
+    def to_dict(self) -> dict:
         return {
-            "url": self.url,
-            "controlPoints": self.control_points.to_json()
+            'url': self.url,
+            'controlPoints': self.control_points.to_dict()
         }
     
 class ImageStitchingRequest:
     def __init__(self, images: List[str]) -> None:
         if not (2 <= len(images) <= 20):
-            raise ValueError("The number of images must be between 2 and 20.")
+            raise ValueError('The number of images must be between 2 and 20.')
         if not all(self.is_valid_url(image_url) for image_url in images):
-            raise ValueError("All image URLs must be valid.")
+            raise ValueError('All image URLs must be valid.')
 
         self.images = images
 
@@ -68,5 +69,5 @@ class ImageStitchingRequest:
         except ValueError:
             return False
 
-    def to_json(self) -> dict:
-        return {'Images': self.images}
+    def to_dict(self) -> dict:
+        return {'images': self.images}
