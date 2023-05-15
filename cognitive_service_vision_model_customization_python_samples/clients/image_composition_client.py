@@ -1,6 +1,6 @@
 import logging
 
-from cognitive_service_vision_model_customization_python_samples.clients import Client
+from .client import Client
 from ..models import ImageStitchingRequest, ImageRectificationRequest
 
 logger = logging.getLogger(__name__)

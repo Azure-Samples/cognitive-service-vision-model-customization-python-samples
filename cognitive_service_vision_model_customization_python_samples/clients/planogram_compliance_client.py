@@ -1,8 +1,8 @@
 import logging
-import time
+import json
 
-from cognitive_service_vision_model_customization_python_samples.clients import Client
-from ..models import PlanogramMatchingRequest, PlanogramMatchingResponse, PostionMatchingResult
+from .client import Client
+from ..models import PlanogramMatchingRequest, PlanogramMatchingResponse
 
 logger = logging.getLogger(__name__)
 
@@ -12,5 +12,5 @@ class PlanogramComplianceClient(Client):
         super().__init__(resource_type, resource_name, multi_service_endpoint, resource_key)
 
     def match_planogram(self, request: PlanogramMatchingRequest) -> PlanogramMatchingResponse:
-        json_response = self.request_post('/planogramcompliance:match', data=request.to_json(), content_type='application/json')
+        json_response = self.request_post('/planogramcompliance:match', data=json.dumps(request), content_type='application/json')
         return PlanogramMatchingResponse.from_response(json_response.json())

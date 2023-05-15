@@ -1,5 +1,6 @@
 import enum
-from cognitive_service_vision_model_customization_python_samples.models.common import Error
+
+from .common import Error
 
 
 class ProductRecognitionStatus(enum.Enum):

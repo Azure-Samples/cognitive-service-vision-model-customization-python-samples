@@ -37,8 +37,10 @@ class Client:
         r = requests.get(self._construct_url(path), params=self._params, headers=self._headers)
         return self._get_json_response(r)
 
-    def request_put(self, path, json):
-        r = requests.put(self._construct_url(path), json=json, params=self._params, headers=self._headers)
+    def request_put(self, path, json=None, data=None, content_type=None):
+        headers = dict(self._headers, **{'Content-Type': content_type}) if content_type else self._headers
+        
+        r = requests.put(self._construct_url(path), json=json, params=self._params, data=data, headers=headers)
         return self._get_json_response(r)
 
     def request_post(self, path, params=None, data=None, content_type=None):

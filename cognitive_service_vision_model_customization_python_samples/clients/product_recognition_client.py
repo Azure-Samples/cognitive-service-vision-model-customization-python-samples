@@ -1,7 +1,7 @@
 import logging
 import time
 
-from cognitive_service_vision_model_customization_python_samples.clients import Client
+from .client import Client
 from ..models import ProductRecognition, ProductRecognitionResponse, ProductRecognitionStatus
 
 logger = logging.getLogger(__name__)
@@ -19,11 +19,12 @@ class ProductRecognitionClient(Client):
         json_response = self.request_get(f'/productrecognition/{model_name}/runs/{name}')
         return ProductRecognitionResponse.from_response(json_response)
 
-    def delete_run(self, name, model_name) -> ProductRecognitionResponse:
+    def delete_run(self, name, model_name) -> None:
         self.request_delete(f'/productrecognition/{model_name}/runs/{name}')
 
     def wait_for_completion(self, name: str, model_name: str, check_wait_in_secs: int = 60) -> ProductRecognitionResponse:
         start_time = time.time()
+        total_elapsed = 0
         while True:
             run = self.query_run(name, model_name)
             status = run.status

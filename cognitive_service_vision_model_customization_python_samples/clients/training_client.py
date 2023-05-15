@@ -1,5 +1,6 @@
 import time
 import logging
+from typing import Tuple, Any
 
 from .client import Client
 from ..models import Model, ModelResponse, ModelStatus, Evaluation, EvaluationStatus, EvaluationResponse
@@ -66,7 +67,7 @@ class TrainingClient(Client):
 
         return evaluation
 
-    def _wait_for_completion(self, query, ending_states, check_wait_in_secs: int = 60) -> ModelResponse:
+    def _wait_for_completion(self, query, ending_states, check_wait_in_secs: int = 60) -> Tuple[Any, float]:
         start_time = time.time()
         total_elapsed = 0
         while True:
