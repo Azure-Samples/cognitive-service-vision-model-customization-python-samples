@@ -22,7 +22,7 @@ class ProductRecognitionClient(Client):
     def delete_run(self, name, model_name) -> None:
         self.request_delete(f'/productrecognition/{model_name}/runs/{name}')
 
-    def wait_for_completion(self, name: str, model_name: str, check_wait_in_secs: int = 60) -> ProductRecognitionResponse:
+    def wait_for_completion(self, name: str, model_name: str, check_wait_in_secs: int = 2) -> ProductRecognitionResponse:
         start_time = time.time()
         total_elapsed = 0
         while True:

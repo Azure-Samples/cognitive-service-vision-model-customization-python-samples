@@ -32,7 +32,7 @@ class ProductRecognitionResponse(ProductRecognition):
     @staticmethod
     def from_response(json):
         return ProductRecognitionResponse(
-            json['name'],
+            json['runName'],
             json['modelName'],
             ProductRecognitionStatus(json['status']),
             json['createdDateTime'],
