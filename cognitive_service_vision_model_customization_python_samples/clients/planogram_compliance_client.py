@@ -12,5 +12,5 @@ class PlanogramComplianceClient(Client):
         super().__init__(resource_type, resource_name, multi_service_endpoint, resource_key)
 
     def match_planogram(self, request: PlanogramMatchingRequest) -> PlanogramMatchingResponse:
-        json_response = self.request_post('/planogramcompliance:match', data=json.dumps(request), content_type='application/json')
-        return PlanogramMatchingResponse.from_response(json_response.json())
+        json_response = self.request_post('/planogramcompliance:match', data=json.dumps(request.to_dict()), content_type='application/json')
+        return PlanogramMatchingResponse.from_response(json_response)

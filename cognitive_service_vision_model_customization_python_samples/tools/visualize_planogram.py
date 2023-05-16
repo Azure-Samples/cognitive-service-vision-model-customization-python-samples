@@ -1,14 +1,12 @@
+import argparse
+from typing import Dict, Any
+
 import cv2
 import json
 import numpy as np
-import argparse
 
 
-def visualize_planogram(input_filename, output_filename, target_width=500):
-    # Load the planogram JSON
-    with open(input_filename, 'r') as f:
-        planogram = json.load(f)
-
+def visualize_planogram(planogram: Dict[str, Any], target_width: int = 500) -> np.ndarray:
     # Calculate the scale factor and aspect ratio
     width = int(planogram['Width'])
     height = int(planogram['Height'])
@@ -32,8 +30,8 @@ def visualize_planogram(input_filename, output_filename, target_width=500):
         w, h = int(fixture['W'] * scale), int(fixture['H'] * scale)
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
 
-    # Save the rendered image
-    cv2.imwrite(output_filename, img)
+    # Return the rendered image
+    return img
 
 
 if __name__ == '__main__':
@@ -44,4 +42,12 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    visualize_planogram(args.input_filename, args.output_filename, args.width)
+    # Load the planogram JSON
+    with open(args.input_filename, 'r') as f:
+        planogram = json.load(f)
+
+    # Visualize the planogram
+    img = visualize_planogram(planogram, args.width)
+
+    # Save the rendered image
+    cv2.imwrite(args.output_filename, img)

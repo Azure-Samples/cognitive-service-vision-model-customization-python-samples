@@ -86,7 +86,7 @@ def convert_to_control_points_format(corner_points):
     return {'ControlPonts': control_points}
 
 
-def main():
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Select corners of an image interactively.')
     parser.add_argument('input_filename', type=str, help='Input image file')
 
@@ -94,7 +94,3 @@ def main():
 
     payload = convert_to_control_points_format(select_four_corners(args.input_filename))
     print(json.dumps(payload, indent=4))
-
-
-if __name__ == '__main__':
-    main()
