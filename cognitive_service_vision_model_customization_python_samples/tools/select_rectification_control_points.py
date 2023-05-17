@@ -3,6 +3,7 @@ import json
 
 import cv2
 import numpy as np
+from typing import List, Dict, Any, Tuple
 
 
 class CornerSelector:
@@ -10,60 +11,56 @@ class CornerSelector:
         self._image = None
         self._points = []
 
-    def interactive_select(self, image):
+    def interactive_select(self, image: np.ndarray) -> np.ndarray:
         self._image = image
         window_name = 'Please select four corners in clockwise order'
         cv2.namedWindow(window_name)
         cv2.setMouseCallback(window_name, self._click_callback)
 
-        while(True):
+        while True:
             cv2.imshow(window_name, self._image)
             cv2.waitKey(20)
             if len(self._points) == 4:
                 cv2.destroyAllWindows()
                 return np.array(self._points)
 
-    def _click_callback(self, event, x, y, flags, param):
+    def _click_callback(self, event: int, x: int, y: int, flags: int, param: Any) -> None:
         if event == cv2.EVENT_LBUTTONDOWN:
             cv2.circle(self._image, (x, y), 5, (0, 0, 255), 2)
             self._points.append((x, y))
 
 
-def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
+def image_resize(image: np.ndarray, shorter_edge: int) -> Tuple[np.ndarray, Tuple[int, int]]:
     dim = None
     (h, w) = image.shape[:2]
 
-    if width is None and height is None:
-        return image
-
-    if width is None:
-        r = height / float(h)
-        dim = (int(w * r), height)
+    if w < h:
+        r = shorter_edge / float(w)
+        width = shorter_edge
+        height = int(h * r)
     else:
-        r = width / float(w)
-        dim = (width, int(h * r))
+        r = shorter_edge / float(h)
+        width = int(w * r)
+        height = shorter_edge
 
-    resized = cv2.resize(image, dim, interpolation = inter)
+    dim = (width, height)
+    resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
     return resized, dim
 
 
-def select_four_corners(intput_path):
-    org_img = cv2.imread(intput_path)
-    if org_img.shape[0] > org_img.shape[1]:
-        img, dim = image_resize(org_img, height=1024)
-    else:
-        img, dim = image_resize(org_img, width=1024)
+def select_four_corners(image: np.ndarray) -> List[List[float]]:
+    img, dim = image_resize(image, shorter_edge=1024)
     corners = CornerSelector().interactive_select(img)
     corners_relative = []
     for corner in corners:
-        tmp_x = corner[0]/dim[0]
-        tmp_y = corner[1]/dim[1]
+        tmp_x = corner[0] / dim[0]
+        tmp_y = corner[1] / dim[1]
         corners_relative.append([tmp_x, tmp_y])
 
     return corners_relative
 
 
-def convert_to_control_points_format(corner_points):
+def convert_to_control_points_format(corner_points: List[List[float]]) -> Dict[str, Dict[str, Dict[str, float]]]:
     control_points = {
         "topLeft": {
             "x": corner_points[0][0],
@@ -83,7 +80,7 @@ def convert_to_control_points_format(corner_points):
         }
     }
 
-    return {'ControlPonts': control_points}
+    return {'ControlPoints': control_points}
 
 
 if __name__ == '__main__':
@@ -92,5 +89,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    payload = convert_to_control_points_format(select_four_corners(args.input_filename))
+    image = cv2.imread(args.input_filename)
+    payload = convert_to_control_points_format(select_four_corners(image))
     print(json.dumps(payload, indent=4))

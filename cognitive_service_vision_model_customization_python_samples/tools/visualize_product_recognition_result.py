@@ -7,8 +7,6 @@ import numpy as np
 
 
 def visualize_recognition_result(result: Dict[str, Any], img: np.ndarray, threshold: float = 0.3) -> np.ndarray:
-    # Visualize result
-
     # Loop over the products and draw rectangles for each one
     for product in result['products']:
         if product['tags'][0]['confidence'] > threshold:
@@ -44,7 +42,6 @@ if __name__ == '__main__':
     # Read the source image
     img = cv2.imread(args.image_filename)
 
-    # Visualize the result
+    # Visualize and save the result
     img = visualize_recognition_result(result, img, args.threshold)
-
     cv2.imwrite(args.output_filename, img)

@@ -8,7 +8,7 @@ from .evaluation_models import EvaluationParameters
 class ModelKind(enum.Enum):
     GENERIC_IC = 'Generic-Classifier'
     GENERIC_OD = 'Generic-Detector'
-    PRODUCT_RECOGNITION = 'Product-Recognition'
+    PRODUCT_RECOGNIZER = 'Product-Recognizer'
 
 
 class ModelStatus(enum.Enum):

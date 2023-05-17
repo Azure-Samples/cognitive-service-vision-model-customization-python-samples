@@ -1,8 +1,10 @@
+from typing import Dict, Any
+
 import cv2
 import numpy as np
 
 
-def _draw_dashed_rect(image, pt1, pt2, color, thickness, d):
+def _draw_dashed_rect(image: np.ndarray, pt1: tuple, pt2: tuple, color: tuple, thickness: int, d: int) -> None:
     # Draw the dashed line in four directions
     for i in range(0, np.abs(pt2[0]-pt1[0]), d*2):
         cv2.line(image, (pt1[0]+i, pt1[1]), (pt1[0]+i+d, pt1[1]), color, thickness)
@@ -14,7 +16,7 @@ def _draw_dashed_rect(image, pt1, pt2, color, thickness, d):
         cv2.line(image, (pt1[0], pt1[1]+i), (pt1[0], pt1[1]+i+d), color, thickness)
 
 
-def visualize_matching_result(img, detected_objects, planogram):
+def visualize_matching_result(img: np.ndarray, detected_objects: Dict[str, Any], planogram: Dict[str, Any]) -> np.ndarray:
     # Image dimensions
     img_height, img_width = img.shape[:2]
 
