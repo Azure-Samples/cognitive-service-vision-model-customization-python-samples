@@ -79,7 +79,7 @@
         },
         {
             "Id": "0012",
-            "ProductId": "0012",
+            "ProductId": "0013",
             "FixtureId": "0002",
             "X": 6.0,
             "Y": 49.6
@@ -135,28 +135,28 @@
         },
         {
             "Id": "0020",
-            "ProductId": "0011",
+            "ProductId": "0013",
             "FixtureId": "0003",
             "X": 1.0,
             "Y": 37.6
         },
         {
             "Id": "0021",
-            "ProductId": "0011",
+            "ProductId": "0013",
             "FixtureId": "0003",
             "X": 6.0,
             "Y": 37.6
         },
         {
             "Id": "0022",
-            "ProductId": "0011",
+            "ProductId": "0012",
             "FixtureId": "0003",
             "X": 11.0,
             "Y": 37.6
         },
         {
             "Id": "0023",
-            "ProductId": "0011",
+            "ProductId": "0012",
             "FixtureId": "0003",
             "X": 16.0,
             "Y": 37.6

@@ -4,63 +4,53 @@ import cv2
 import numpy as np
 
 
-def _draw_dashed_rect(image: np.ndarray, pt1: tuple, pt2: tuple, color: tuple, thickness: int, d: int) -> None:
-    # Draw the dashed line in four directions
-    for i in range(0, np.abs(pt2[0]-pt1[0]), d*2):
-        cv2.line(image, (pt1[0]+i, pt1[1]), (pt1[0]+i+d, pt1[1]), color, thickness)
-    for i in range(0, np.abs(pt2[1]-pt1[1]), d*2):
-        cv2.line(image, (pt2[0], pt1[1]+i), (pt2[0], pt1[1]+i+d), color, thickness)
-    for i in range(0, np.abs(pt2[0]-pt1[0]), d*2):
-        cv2.line(image, (pt1[0]+i, pt2[1]), (pt1[0]+i+d, pt2[1]), color, thickness)
-    for i in range(0, np.abs(pt2[1]-pt1[1]), d*2):
-        cv2.line(image, (pt1[0], pt1[1]+i), (pt1[0], pt1[1]+i+d), color, thickness)
-
-
-def visualize_matching_result(img: np.ndarray, detected_objects: Dict[str, Any], planogram: Dict[str, Any]) -> np.ndarray:
+def visualize_matching_result(img: np.ndarray, matching_result: Dict[str, Any], planogram: Dict[str, Any]) -> np.ndarray:
     # Image dimensions
     img_height, img_width = img.shape[:2]
 
     # Create a dictionary of detected objects by positionId for easy lookup
-    detected_objects_dict = {obj['positionId']: obj for obj in detected_objects['matchingResultPerPosition']}
+    matching_result_dict = {obj['positionId']: obj for obj in matching_result['matchingResultPerPosition']}
 
-    for position in planogram["Positions"]:
-        # Normalize planogram position and convert to pixel coordinates
-        x = int((position["X"] / planogram["Width"]) * img_width)
-        y = int((position["Y"] / planogram["Height"]) * img_height)
+    # Create a dictionary of planogram positions by Id for easy lookup
+    positions_dict = {position['Id']: position for position in planogram['Positions']}
+    
+    # Create a dictionary of products by Id for easy lookup
+    products_dict = {product['Id']: product for product in planogram['Products']}
 
-        # Use the product dimensions for the width and height of the box
-        # Note: This assumes that the product dimensions are also relative to the planogram's width and height
-        product = next((p for p in planogram["Products"] if p["Id"] == position["ProductId"]), None)
-        if product is not None:
-            w = int((product["W"] / planogram["Width"]) * img_width)
-            h = int((product["H"] / planogram["Height"]) * img_height)
+    for positionId, detected_obj in matching_result_dict.items():
+        # If the detected object's position is not in the planogram, skip it
+        if positionId not in positions_dict:
+            continue
 
-            # Default planogram position color is green
+        # Normalize boundingBox coordinates and convert to pixel coordinates
+        bb = detected_obj['detectedObject']['boundingBox']
+        x = int((bb['x'] / img_width) * img_width)
+        y = int((bb['y'] / img_height) * img_height)
+        w = int((bb['w'] / img_width) * img_width)
+        h = int((bb['h'] / img_height) * img_height)
+
+        # Get the position and product for this detected object
+        position = positions_dict[positionId]
+        product = products_dict.get(position['ProductId'], None)
+        if product is None:
+            raise Exception(f"Planogram corrupted: Product with Id {position['ProductId']} not found in planogram.")
+
+        # If the detected object's tag matches the product's name, change box color to green and label to 'Matched Product'
+        tag = detected_obj['detectedObject']['tags'][0]
+        if tag['name'] == product['Name'] or tag['name'] == 'product':
             color = (0, 255, 0)  # Green
+            label = 'Matched Product'
+        elif tag['name'] == 'gap':
+            color = (0, 0, 255)  # Red
+            label = 'Missing Product'
+            print(f'Missing Product in position {positionId}, expected {product["Name"]} but found gap')
+        else:
+            color = (255, 0, 255) # Magenta
+            label = 'Misplaced Product'
+            print(f'Misplaced Product in position {positionId}, expected {product["Name"]} but found {tag["name"]}')
 
-            # If this positionId matches a detected object with a 'gap' tag, change box color to red
-            detected_obj = detected_objects_dict.get(position['Id'], None)
-            if detected_obj is not None:
-                for tag in detected_obj['detectedObject']['tags']:
-                    if tag['name'] == 'gap':
-                        color = (0, 0, 255)  # Red
-
-            # Draw rectangle for planogram position
-            img = cv2.rectangle(img, (x, y), (x+w, y+h), color, 6)
-
-    for obj in detected_objects_dict.values():
-        bb = obj['detectedObject']['boundingBox']
-        x, y, w, h = bb['x'], bb['y'], bb['w'], bb['h']
-
-        # Default detected object color is blue
-        color = (255, 0, 0)  # Blue
-
-        # Check for 'gap' tag
-        for tag in obj['detectedObject']['tags']:
-            if tag['name'] == 'gap':
-                color = (0, 0, 255)  # Red
-
-        # Draw rectangle for detected object
-        _draw_dashed_rect(img, (x, y), (x+w, y+h), color, 6, 10)
+        # Draw rectangle for detected object and put text annotation
+        img = cv2.rectangle(img, (x, y), (x+w, y+h), color, 6, 10)
+        cv2.putText(img, label, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color, 2)
 
     return img
