@@ -50,7 +50,7 @@ class Client:
         headers = dict(self._headers, **{'Content-Type': content_type}) if content_type else self._headers
         r = requests.post(self._construct_url(path), data=data, params=dict(self._params, **params), headers=headers)
 
-        if r.headers['Content-Type'] == 'image/jpeg':
+        if r.get(headers['Content-Type'], None) == 'image/jpeg':
             return r.content
 
         return self._get_json_response(r)
