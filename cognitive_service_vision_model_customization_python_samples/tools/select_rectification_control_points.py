@@ -90,5 +90,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     image = cv2.imread(args.input_filename)
+    # Select four corners interactively and convert corner points to control points format
     payload = convert_to_control_points_format(select_four_corners(image))
     print(json.dumps(payload, indent=4))
