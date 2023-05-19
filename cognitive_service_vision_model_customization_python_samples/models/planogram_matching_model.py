@@ -26,7 +26,7 @@ class PlanogramMatchingResponse:
     @staticmethod
     def from_response(json):
         return PlanogramMatchingResponse(json['matchingResultPerPosition'])
-    
+
     def to_dict(self) -> dict:
         return {
             'matchingResultPerPosition': self.matching_result

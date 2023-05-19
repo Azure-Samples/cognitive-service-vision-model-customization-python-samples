@@ -14,6 +14,6 @@ class ImageCompositionClient(Client):
 
     def stitch_images(self, request: ImageStitchingRequest) -> bytes:
         return self.request_post('/imagecomposition:stitch', data=json.dumps(request.to_dict()), content_type='application/json')
-    
+
     def rectify_image(self, request: ImageRectificationRequest) -> bytes:
         return self.request_post('/imagecomposition:rectify', data=json.dumps(request.to_dict()), content_type='application/json')

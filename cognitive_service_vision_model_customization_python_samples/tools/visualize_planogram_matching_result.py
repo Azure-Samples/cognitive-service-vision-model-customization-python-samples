@@ -13,7 +13,7 @@ def visualize_matching_result(img: np.ndarray, matching_result: Dict[str, Any], 
 
     # Create a dictionary of planogram positions by Id for easy lookup
     positions_dict = {position['Id']: position for position in planogram['Positions']}
-    
+
     # Create a dictionary of products by Id for easy lookup
     products_dict = {product['Id']: product for product in planogram['Products']}
 

@@ -52,7 +52,8 @@ class ImageRectificationRequest:
             'url': self.url,
             'controlPoints': self.control_points.to_dict()
         }
-    
+
+
 class ImageStitchingRequest:
     def __init__(self, images: List[str]) -> None:
         if not (2 <= len(images) <= 20):
