@@ -6,7 +6,7 @@ Azure Cognitive Services Computer Vision has a set of special services and produ
 
 Computer Vision's Model Customization is a custom model training service that allows users like developers to easily train an image classification model (Multiclass only for now) or object detection model, with low-code experience and very little understanding of machine learning or computer vision required.
 
-This is a sample repository demonstrating how to train and predict a custom model with Cognitive Service for Vision, using Python. To get started, check out [this tutorial in Python notebook](./docs/model_customization/cognitive_service_vision_model_customization.ipynb).
+This is a sample repository demonstrating how to train and predict a custom model with Cognitive Service for Vision, using Python. To get started, check out [this tutorial in Python notebook](./docs/cognitive_service_vision_model_customization.ipynb).
 
 ## Product Recognition
 
@@ -19,7 +19,7 @@ Computer Vision's product recognition service has been designed to be used in re
 
 ### Existing Custom Vision (customvision.ai) Customers
 
-Refer to [export_cvs_data_to_blob_storage.ipynb](./docs/model_customization/export_cvs_data_to_blob_storage.ipynb) for instructions or directly run [export_cvs_data_to_blob_storage.py](cognitive_service_vision_model_customization_python_samples/data/export_cvs_data_to_blob_storage.py) to export Custom Vision images and annotations to your own blob storage, which can be later used for model customization training.
+Refer to [export_cvs_data_to_blob_storage.ipynb](./docs/export_cvs_data_to_blob_storage.ipynb) for instructions or directly run [export_cvs_data_to_blob_storage.py](cognitive_service_vision_model_customization_python_samples/data/export_cvs_data_to_blob_storage.py) to export Custom Vision images and annotations to your own blob storage, which can be later used for model customization training.
 
 Once data is exported, you can use it with Cognitive Service Vision Model Customization.
 
@@ -29,7 +29,7 @@ If you would like to explore more functionalities offered in Cognitive Service V
 
 ### FAQ & Docs
 
-For frequently asked questions or quick troubleshooting, check out [FAQ](./docs/model_customization/faq.md), including things like troubleshooting guides, quota information, etc.
+For frequently asked questions or quick troubleshooting, check out [FAQ](./docs/faq.md), including things like troubleshooting guides, quota information, etc.
 
 For more documentation, check out:
 
