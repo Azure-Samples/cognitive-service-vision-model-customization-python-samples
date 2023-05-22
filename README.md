@@ -30,4 +30,4 @@ For frequently asked questions or quick troubleshooting, check out [FAQ](./docs/
 For more documentation, check out:
 
 - API: [Here](https://learn.microsoft.com/en-us/rest/api/computervision/2023-02-01-preview/models)
-- SDK: [Here](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples/python/image-analysis) (note that model customization training is not supported in this SDK yet, while prediction is supported.)
+- SDK: [Here](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples/python/image-analysis) (note that model customization training and product recognition are not supported in this SDK yet, while prediction is supported.)
