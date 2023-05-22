@@ -1,21 +1,17 @@
 # Azure Cognitive Services Computer Vision - Python SDK Samples
 
-Azure Cognitive Services Computer Vision has a set of special services and products. In this repository, we introduce two of them: Model Customization and Product Recognition. We will guide you through how to use these services using Python SDK samples.
-
 ## Model Customization
 
 Computer Vision's Model Customization is a custom model training service that allows users like developers to easily train an image classification model (Multiclass only for now) or object detection model, with low-code experience and very little understanding of machine learning or computer vision required.
 
 This is a sample repository demonstrating how to train and predict a custom model with Cognitive Service for Vision, using Python. To get started, check out [this tutorial in Python notebook](./docs/cognitive_service_vision_model_customization.ipynb).
 
-## Product Recognition
+### Product Recognition
 
-Computer Vision's product recognition service has been designed to be used in retail scenarios, where users would like to detect products, such as Consumer Packaged Goods (CPG), on a shelf. It comes with a set of APIs, a pre-built AI model, and a custom AI model that can be trained following the model customization guide above. You can try these out by following tutorials in Python notebooks: 
+One of the scenarios we would like to introudce as a model customization scenario is Product Recognition. Computer Vision's product recognition service has been designed to be used in retail scenarios, where users would like to detect products, such as Consumer Packaged Goods (CPG), on a shelf. It comes with a set of APIs, a pre-built AI model, and a custom AI model that can be trained following the model customization guide above. You can try these out by following tutorials in Python notebooks: 
 * **[Image Composition](./docs/cognitive_service_vision_image_composition.ipynb)**: for stitching together the segmented shelf images using Image Stitching API, as well as adjusting any slanted or squished shelf images to a correct orientation using Image Rectification API
 * **[Product Recognition](./docs/cognitive_service_vision_product_recognition.ipynb)**: for detecting products and gaps on a shelf image using a pre-built model, and individually classifying the detected products using customized model, both using Product Understanding API
 * **[Planogram Compliance](./docs/cognitive_service_vision_planogram_compliance.ipynb)**: for assessing the matchings between a planogram schema and the detected products on a shelf using Planogram Compliance API
-
-## 
 
 ### Existing Custom Vision (customvision.ai) Customers
 
