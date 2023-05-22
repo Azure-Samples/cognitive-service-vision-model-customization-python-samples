@@ -31,7 +31,11 @@ Some common failures:
 - **diverged**: It means the training cannot learn meaningful things from your data. Some common causes are
   - Data is not enough: provide more data should help
   - Data is of bad quality: check if your images are of very low resolution, aspect ratio being very extreme, or annotations are wrong
-- **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training. Specify more budget please
+- **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training.
+  - When you see this error, you can find a minimum budget required and a suggested budget
+  - Here we offer a rough upfront minimum budget as well:
+    - **Generic-Classifier**: the miminum budget is: **0.0003334 * num_images** hours
+    - **Generic-Detector**: the minimum budget hours is: **0.0066667 * num_images** hours
 - **datasetCorrupt**: Usually this is due to the fact that your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
 - **datasetNotFound**: dataset cannot be found
 - **unknown**: It could be our system's issue, please reach out to us for investigation
