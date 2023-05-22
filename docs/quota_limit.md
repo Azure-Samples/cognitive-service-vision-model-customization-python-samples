@@ -5,7 +5,7 @@
 |                                    | Generic IC                      | Generic OD                      | Product Recognition             |
 | ---------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
 | Max # training hours*              | 336 (14 compute days)           | 1344 (56 compute days)          | 336 (14 compute days)           |
-| Max # training images              | 1,000,000                       | 200,000                         | 1,000,000                       |
+| Max # training images              | 1,000,000                       | 200,000                         | 50,000                          |
 | Min # training images per category | 2                               | 2                               | 1                               |
 | Max # tags per image               | multiclass: 1                   | NA                              | NA                              |
 | Max # regions per image            | NA                              | 1,000                           | 1,000                           |
@@ -23,7 +23,7 @@
 
 |                                      | Generic IC                      | Generic OD                      | Product Recognition             |
 | ------------------------------------ | ------------------------------- | ------------------------------- | ------------------------------- |
-| Max # evaluation images              | 100,000                         | 100,000                         | 100,000                         |
+| Max # evaluation images              | 100,000                         | 100,000                         | 10,000                          |
 | Min # evaluation images per category | 1                               | 1                               | 1                               |
 | Max # tags per image                 | multiclass: 1                   | NA                              | NA                              |
 | Max # regions per image              | NA                              | 1,000                           | 1,000                           |
