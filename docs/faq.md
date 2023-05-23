@@ -36,6 +36,7 @@ Some common failures:
   - Here we offer a rough upfront minimum budget as well:
     - **Generic-Classifier**: the miminum budget is: **0.0003334 * num_images** hours
     - **Generic-Detector**: the minimum budget hours is: **0.0066667 * num_images** hours
+    - **Product-Recognizer**: the minimum budget hours is: **0.0003334 * num_images * average_boxes_per_images** hours
 - **datasetCorrupt**: Usually this is due to the fact that your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
 - **datasetNotFound**: dataset cannot be found
 - **unknown**: It could be our system's issue, please reach out to us for investigation
