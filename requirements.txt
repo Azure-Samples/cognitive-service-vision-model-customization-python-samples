@@ -3,3 +3,4 @@ azure-cognitiveservices-vision-customvision
 cffi
 requests
 tqdm
+opencv-python-headless

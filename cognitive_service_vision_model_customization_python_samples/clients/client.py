@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class Client:
-    def __init__(self, resource_type, resource_name: str, multi_service_endpoint, resource_key: str) -> None:
+    def __init__(self, resource_type, resource_name: str, multi_service_endpoint, resource_key: str, api_version: str='2023-04-01-preview') -> None:
         resource_type = ResourceType(resource_type) if isinstance(resource_type, str) else resource_type
 
         if resource_type == ResourceType.MULTI_SERVICE_RESOURCE:
@@ -18,7 +18,7 @@ class Client:
             self._endpoint = f'https://{resource_name}.cognitiveservices.azure.com/computervision'
 
         self._headers = {'Ocp-Apim-Subscription-Key': resource_key}
-        self._params = {'api-version': '2023-02-01-preview'}
+        self._params = {'api-version': api_version}
 
     def _construct_url(self, path):
         return self._endpoint + '/' + path
@@ -37,8 +37,10 @@ class Client:
         r = requests.get(self._construct_url(path), params=self._params, headers=self._headers)
         return self._get_json_response(r)
 
-    def request_put(self, path, json):
-        r = requests.put(self._construct_url(path), json=json, params=self._params, headers=self._headers)
+    def request_put(self, path, json=None, data=None, content_type=None):
+        headers = dict(self._headers, **{'Content-Type': content_type}) if content_type else self._headers
+
+        r = requests.put(self._construct_url(path), json=json, params=self._params, data=data, headers=headers)
         return self._get_json_response(r)
 
     def request_post(self, path, params=None, data=None, content_type=None):
@@ -47,6 +49,10 @@ class Client:
         params = params or {}
         headers = dict(self._headers, **{'Content-Type': content_type}) if content_type else self._headers
         r = requests.post(self._construct_url(path), data=data, params=dict(self._params, **params), headers=headers)
+
+        if r.get(headers['Content-Type'], None) == 'image/jpeg':
+            return r.content
+
         return self._get_json_response(r)
 
     def request_patch(self, path, json):

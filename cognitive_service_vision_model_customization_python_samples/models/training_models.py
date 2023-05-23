@@ -1,4 +1,5 @@
 import enum
+from typing import Optional
 
 from .common import Error
 from .evaluation_models import EvaluationParameters
@@ -7,6 +8,7 @@ from .evaluation_models import EvaluationParameters
 class ModelKind(enum.Enum):
     GENERIC_IC = 'Generic-Classifier'
     GENERIC_OD = 'Generic-Detector'
+    PRODUCT_RECOGNIZER = 'Product-Recognizer'
 
 
 class ModelStatus(enum.Enum):
@@ -41,7 +43,7 @@ class TrainingParameters:
 
 
 class Model:
-    def __init__(self, name: str, trainingParams: TrainingParameters, evaluationParams: EvaluationParameters = None) -> None:
+    def __init__(self, name: str, trainingParams: TrainingParameters, evaluationParams: Optional[EvaluationParameters] = None) -> None:
         assert name
         self.name = name
         self.training_params = trainingParams
@@ -60,7 +62,7 @@ class Model:
 
 class ModelResponse(Model):
     def __init__(self, name: str, trainingParams: TrainingParameters, training_cost_in_minutes: int, status: ModelStatus, model_performance: dict, created_date_time: str, updated_date_time: str,
-                 error: Error, evaluationParams: EvaluationParameters = None) -> None:
+                 error: Error, evaluationParams: Optional[EvaluationParameters] = None) -> None:
         super().__init__(name, trainingParams, evaluationParams)
         self.training_cost_in_minutes = training_cost_in_minutes
         self.status = status

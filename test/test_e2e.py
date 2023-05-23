@@ -72,12 +72,24 @@ class TestE2E(unittest.TestCase):
             dataset_client.delete_dataset(dataset_name)
 
     @unittest.skipUnless(is_configured(), "requires endpoint info")
-    def test_request_training(self):
+    def test_request_training_ic(self):
+        self.test_request_training_core(ModelKind.GENERIC_IC)
+
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_training_od(self):
+        self.test_request_training_core(ModelKind.GENERIC_OD)
+
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_training_pr(self):
+        self.test_request_training_core(ModelKind.PRODUCT_RECOGNITION)
+
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_training_core(self, model_kind=ModelKind.GENERIC_IC):
         dataset_name = str(uuid.uuid4())
         dataset_client = DatasetClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         dataset = Dataset(name=dataset_name, annotation_kind=AnnotationKind.OBJECT_DETECTION, annotation_file_uris=[self.od_dataset_url], custom_properties={'key': 'value'})
         model_name = dataset_name + '_model'
-        model = Model(model_name, TrainingParameters(training_dataset_name=dataset_name, time_budget_in_hours=1, model_kind=ModelKind.GENERIC_OD))
+        model = Model(model_name, TrainingParameters(training_dataset_name=dataset_name, time_budget_in_hours=1, model_kind=model_kind))
         training_client = TrainingClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         try:
             dataset_client.register_dataset(dataset)
@@ -90,13 +102,25 @@ class TestE2E(unittest.TestCase):
             dataset_client.delete_dataset(dataset_name)
 
     @unittest.skipUnless(is_configured(), "requires endpoint info")
-    def test_request_evaluation(self):
+    def test_request_evaluation_ic(self):
+        self.test_request_evaluation_core(ModelKind.GENERIC_IC)
+
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_evaluation_od(self):
+        self.test_request_evaluation_core(ModelKind.GENERIC_OD)
+
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_evaluation_pr(self):
+        self.test_request_evaluation_core(ModelKind.PRODUCT_RECOGNITION)
+
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_evaluation_core(self, model_kind=ModelKind.GENERIC_IC):
         dataset_name = str(uuid.uuid4())
         dataset_client = DatasetClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         evaluation_client = EvaluationClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         dataset = Dataset(name=dataset_name, annotation_kind=AnnotationKind.OBJECT_DETECTION, annotation_file_uris=[self.od_dataset_url], custom_properties={'key': 'value'})
         model_name = dataset_name + '_model'
-        model = Model(model_name, TrainingParameters(training_dataset_name=dataset_name, time_budget_in_hours=1, model_kind=ModelKind.GENERIC_OD))
+        model = Model(model_name, TrainingParameters(training_dataset_name=dataset_name, time_budget_in_hours=1, model_kind=model_kind))
         training_client = TrainingClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         evaluation = Evaluation('test_eval', model_name, dataset_name)
         try:
