@@ -83,7 +83,8 @@ class TestE2E(unittest.TestCase):
     def test_request_training_pr(self):
         self.test_request_training_core(ModelKind.PRODUCT_RECOGNITION)
 
-    def test_request_training_core(self, model_kind):
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_training_core(self, model_kind=ModelKind.GENERIC_IC):
         dataset_name = str(uuid.uuid4())
         dataset_client = DatasetClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         dataset = Dataset(name=dataset_name, annotation_kind=AnnotationKind.OBJECT_DETECTION, annotation_file_uris=[self.od_dataset_url], custom_properties={'key': 'value'})
@@ -112,7 +113,8 @@ class TestE2E(unittest.TestCase):
     def test_request_evaluation_pr(self):
         self.test_request_evaluation_core(ModelKind.PRODUCT_RECOGNITION)
 
-    def test_request_evaluation_core(self, model_kind):
+    @unittest.skipUnless(is_configured(), "requires endpoint info")
+    def test_request_evaluation_core(self, model_kind=ModelKind.GENERIC_IC):
         dataset_name = str(uuid.uuid4())
         dataset_client = DatasetClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
         evaluation_client = EvaluationClient(ResourceType.MULTI_SERVICE_RESOURCE, None, self.endpoint, self.resource_key)
