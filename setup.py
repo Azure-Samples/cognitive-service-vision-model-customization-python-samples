@@ -27,7 +27,7 @@ setuptools.setup(name='cognitive-service-vision-model-customization-python-sampl
                      'azure-storage-blob',
                      'azure-cognitiveservices-vision-customvision',
                      'cffi',
-                     'opencv-python-headless~=4.6.0.66'
+                     'opencv-python-headless'
                  ],
                  classifiers=[
                      'Development Status :: 4 - Beta',
