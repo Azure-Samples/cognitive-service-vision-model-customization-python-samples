@@ -31,9 +31,9 @@ Some common failures:
 - **diverged**: It means the training cannot learn meaningful things from your data. Some common causes are
   - Data is not enough: provide more data should help
   - Data is of bad quality: check if your images are of very low resolution, aspect ratio being very extreme, or annotations are wrong
-- **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training.
-  - When you see this error, you can find a minimum budget required and a suggested budget
-  - Here we offer a rough upfront minimum budget as well:
+- **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training
+  - When you see this error, you can find a minimum budget required and a suggested budget in the training error message
+  - We provide you with a rough upfront minimum budget to train your model effectively. It's important to note that the minimum budget ensures basic model functionality. However, if you're looking for optimal model quality and performance, we recommend considering a budget that is **2-5** times higher than the minimum. Investing sufficient budget into the training allows us to allocate more computational power and fine-tune the model extensively, leading to better outcomes.
     - **Generic-Classifier**: the miminum budget is: **0.0003334 * num_images** hours
     - **Generic-Detector**: the minimum budget hours is: **0.0066667 * num_images** hours
     - **Product-Recognizer**: the minimum budget hours is: **0.0003334 * num_images * average_boxes_per_images** hours
