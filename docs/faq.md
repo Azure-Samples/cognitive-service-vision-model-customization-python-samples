@@ -33,10 +33,10 @@ Some common failures:
   - Data is of bad quality: check if your images are of very low resolution, aspect ratio being very extreme, or annotations are wrong
 - **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training
   - When you see this error, you can find a minimum budget required and a suggested budget in the training error message
-  - We provide you with a rough upfront minimum budget to train your model effectively. It's important to note that the minimum budget ensures basic model functionality. However, if you're looking for optimal model quality and performance, we recommend considering a budget that is **3-5** times higher than the minimum. Investing sufficient budget into the training allows us to allocate more computational power and fine-tune the model extensively, leading to better outcomes.
-    - **Generic-Classifier**: the miminum budget is: **0.0003334 * num_images** hours
-    - **Generic-Detector**: the minimum budget hours is: **0.0066667 * num_images** hours
-    - **Product-Recognizer**: the minimum budget hours is: **0.0003334 * num_images * average_boxes_per_images** hours
+  - We provide you with a rough upfront minimum budget to train your model effectively and a recommended budget for optimal model quality. It's important to note that the minimum budget ensures basic model functionality. Investing sufficient budget into the training allows us to allocate more computational power and fine-tune the model extensively, leading to better outcomes.
+    - **Generic-Classifier**: the miminum budget is: **0.0003334 * num_images** hours. For optimal quality, try at least 5-10x higher than the min budget.
+    - **Generic-Detector**: the minimum budget hours is: **0.0066667 * num_images** hours. For optimal quality, try at least 3-5x higher than the min budget.
+    - **Product-Recognizer**: the minimum budget hours is: **0.0003334 * num_images * average_boxes_per_images** hours. For optimal quality, try at least 2-4x higher than the min budget.
 - **datasetCorrupt**: Usually this is due to the fact that your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
 - **datasetNotFound**: dataset cannot be found
 - **unknown**: It could be our system's issue, please reach out to us for investigation
