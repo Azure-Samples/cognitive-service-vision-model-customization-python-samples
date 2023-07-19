@@ -1,0 +1,37 @@
+# Tells Azure ML what kind of YAML this is.
+#  Docs: https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-job-command
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+# Name of the experiment where all jobs will end up in the Azure ML dashboard
+experiment_name: florence-training
+
+# What to run
+command: >-
+  python main.py
+  --resource_key ${{inputs.resource_key}}
+  --model_name ${{inputs.model_name}}
+  --train ${{inputs.train}}
+  --train_aml_dataset_name ${{inputs.train_aml_dataset_name}}
+  --time_budget_in_hours ${{inputs.time_budget_in_hours}}
+  --inference ${{inputs.inference}}
+  --inference_data_path ${{inputs.inference_data_path}}
+
+inputs:
+  resource_key: "2bc9bd75b2ff4883a966fea5dc0d9a10"
+  model_name: "cat_dog_model"
+  train_aml_dataset_name: "cats_dogs"
+  train: True
+  time_budget_in_hours: 1
+  inference: False
+  inference_data_path:
+    path: azureml:bromley_test_cropped_old@latest
+
+# What code to make available
+code: .
+
+# Where to run it
+environment:
+  build:
+    path: ./environment
+
+compute: azureml:playground-yvonne
