@@ -3,6 +3,7 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 
 # Name of the experiment where all jobs will end up in the Azure ML dashboard
+# TODO: rename experiment to uvs-florence
 experiment_name: florence-training
 
 # What to run
@@ -17,6 +18,7 @@ command: >-
   --inference_data_path ${{inputs.inference_data_path}}
 
 inputs:
+  # TODO: resolve resource key
   resource_key: "2bc9bd75b2ff4883a966fea5dc0d9a10"
   model_name: "cat_dog_model"
   train_aml_dataset_name: "cats_dogs"
@@ -24,7 +26,7 @@ inputs:
   time_budget_in_hours: 1
   inference: False
   inference_data_path:
-    path: azureml:bromley_test_cropped_old@latest
+    path: azureml:cats_dogs@latest
 
 # What code to make available
 code: .
@@ -34,4 +36,4 @@ environment:
   build:
     path: ./environment
 
-compute: azureml:playground-yvonne
+compute: azureml:compute-cluster-cpu
