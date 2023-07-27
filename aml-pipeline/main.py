@@ -8,7 +8,6 @@ logging.getLogger().setLevel(logging.INFO)
 from azureml.core import Run
 from azureml.core import Dataset as amlds
 import mlflow
-from common import error_analysis, metrics
 from cognitive_service_vision_model_customization_python_samples import (
     ResourceType,
     TrainingClient,
@@ -122,11 +121,6 @@ def run(
                     ean_acc.append(ind_acc_float)
 
     fig = create_barplot(ean, ean_acc)
-    # mlflow.log_figure throws random exceptions sometimes
-    # removing for now and writing artifacts directly to 'outputs/' dir
-    # fig.savefig("outputs/per_ean_accuracy.png")
-    # mlflow.log_figure(fig, "per_ean_accuracy.jpg")
-
     mlflow_safe_log(mlflow.log_figure, fig, "per_ean_accuracy.png")
 
     model_metrics["training_cost_in_minutes"] = model.training_cost_in_minutes

@@ -9,7 +9,7 @@ experiment_name: florence-training
 # What to run
 command: >-
   python main.py
-  --resource_key ${{inputs.resource_key}}
+  --uvs_resource_key ${{inputs.uvs_resource_key}}
   --model_name ${{inputs.model_name}}
   --train ${{inputs.train}}
   --train_aml_dataset_name ${{inputs.train_aml_dataset_name}}
@@ -19,14 +19,14 @@ command: >-
 
 inputs:
   # TODO: resolve resource key
-  resource_key: "2bc9bd75b2ff4883a966fea5dc0d9a10"
+  uvs_resource_key: ""
   model_name: "cat_dog_model"
-  train_aml_dataset_name: "cats_dogs"
+  train_aml_dataset_name: "cats_n_dogs"
   train: True
-  time_budget_in_hours: 1
+  time_budget_in_hours: 6
   inference: False
   inference_data_path:
-    path: azureml:cats_dogs@latest
+    path: azureml:cats_n_dogs@latest
 
 # What code to make available
 code: .
