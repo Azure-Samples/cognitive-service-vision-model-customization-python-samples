@@ -8,3 +8,8 @@ TODO:
   - Document format requirements (COCO)
   - Document registration/upload in AML
   - Document Managed Identity access for UVS/CogS to storage account
+
+## Dataset Adjustment and Upload to AML
+- cd cognitive-service-vision-model-customization-python-samples/aml-pipeline
+- run python adjust_coco.py -s 'new_blob_name'
+- Register Dataset in AML
