@@ -1,4 +1,4 @@
-```az ml job create -f azure-ml-job.yaml --resource-group kz-aml-rg --workspace-name kz-aml```
+```az ml job create -f azure-ml-job.yaml --resource-group kz-aml-rg --workspace-name kz-aml --set inputs.uvs_resource_key="<cogs_key>"```
 
 TODO:
 - UVS/Cogs
