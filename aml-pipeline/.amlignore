@@ -7,3 +7,6 @@
 __pycache__/
 test/
 local.py
+data/
+data/*
+adjust_coco.py
