@@ -9,7 +9,7 @@
 | Min # training images per category | 2                               | 2                               | 1                               |
 | Max # tags per image               | multiclass: 1                   | NA                              | NA                              |
 | Max # regions per image            | NA                              | 1,000                           | 1,000                           |
-| Max # categories                   | 3,000                           | 1,000                           | 1,000                           |
+| Max # categories                   | 3,000                           | 1,500                           | 1,000                           |
 | Min # categories                   | 2                               | 1                               | 1                               |
 | Max image size                     | 20MB                            | 20MB                            | 20MB                            |
 | Max image width/height             | 10,240                          | 10,240                          | 10,240                          |
@@ -27,7 +27,7 @@
 | Min # evaluation images per category | 1                               | 1                               | 1                               |
 | Max # tags per image                 | multiclass: 1                   | NA                              | NA                              |
 | Max # regions per image              | NA                              | 1,000                           | 1,000                           |
-| Max # categories                     | 3,000                           | 1,000                           | 1,000                           |
+| Max # categories                     | 3,000                           | 1,500                           | 1,000                           |
 | Min # categories                     | 2                               | 1                               | 1                               |
 | Max image size                       | Sync: 6MB, Batch: 20MB          | Sync: 6MB, Batch: 20MB          | Sync: 6MB, Batch: 20MB          |
 | Max image width/height               | 16,000                          | 16,000                          | 16,000                          |
