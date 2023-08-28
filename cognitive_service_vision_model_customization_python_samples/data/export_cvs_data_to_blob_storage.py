@@ -8,6 +8,7 @@ import json
 import pathlib
 import logging
 from azure.storage.blob import ContainerClient, BlobClient
+from azure.core.exceptions import ClientAuthenticationError
 import multiprocessing
 
 
@@ -21,8 +22,16 @@ def get_file_name(sub_folder, image_id):
 def blob_copy(params):
     container_client, sub_folder, image = params
     blob_client: BlobClient = container_client.get_blob_client(get_file_name(sub_folder, image.id))
-    blob_client.start_copy_from_url(image.original_image_uri)
-    return blob_client
+
+    try:
+        blob_client.start_copy_from_url(image.original_image_uri)
+        return blob_client
+    except ClientAuthenticationError as e:
+        logging.error(f'Error copying image {image.id} from {image.original_image_uri} to {blob_client.url}. Error: {e.reason}')
+    except Exception as e:
+        logging.error(f'Error copying image {image.id} from {image.original_image_uri} to {blob_client.url}. Error: {e}')
+
+    return None
 
 
 def wait_for_completion(blobs, time_out=5):
@@ -41,7 +50,12 @@ def copy_images_with_retry(pool, container_client, sub_folder, images: List, bat
     urls = []
     while images and n_retries > 0:
         params = [(container_client, sub_folder, image) for image in images]
-        img_and_blobs = zip(images, pool.map(blob_copy, params))
+        blobs = pool.map(blob_copy, params)
+        if any(b is None for b in blobs):
+            raise RuntimeError(f'Copy failed for some images in batch {batch_id}. Check your provided Azure Storage information.')
+
+        img_and_blobs = zip(images, blobs)
+
         logging.info(f'Batch {batch_id}: Copied {len(images)} images.')
         urls = urls or [b.url for _, b in img_and_blobs]
 
