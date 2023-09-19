@@ -7,7 +7,7 @@ For quota limit information, please refer to [quota_limit.md](./quota_limit.md)
 
 ## Why does my training take longer/shorter than my specified budget?
 
-There are three concetps:
+There are three key concepts:
 
 - Specified training budget time
 - Billing training time
