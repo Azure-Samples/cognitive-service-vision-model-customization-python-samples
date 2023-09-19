@@ -5,24 +5,32 @@
 
 For quota limit information, please refer to [quota_limit.md](./quota_limit.md)
 
-## Why does my training take longer/shorter than my specified budget?
+## Why does my training duration differ from my specified budget?
 
-Note that the budget specified and actual charged training time are actual **compute time**, not wall-clock time. Some common reasons for the difference are listed below:
+There are three concetps: 
+- Specified training budget time
+- Billing training time
+- Real-world elapsed training time, aka wall clock time.
 
-### Longer than specified budget
+It's important to clarify that both the budget specified and the actual training time charged refer to compute time, not the real-world elapsed time. The training time billed will be never over your specified budget. Sometimes it might be way shorter than your specifid training budget, due to the training engine determining that further exploration isn't beneficial and completes the training before the budget is exhausted.
 
-- When there is a high training traffic, the GPU resources might be tight and your job might stay in queue or be on hold during training
-- Training in our backend runs into un/expected failures, which results in retrying logic. As the failed runs do not consume your budget, this can lead to longer training time in general
-- Your data is stored in a different region than your created computer vision resource, which will lead to longer data transmission time.
+The **billing training time** can be different than **real-world elapsed training time** for the following reasons.
 
-### Shorter than specified budget
+### Real-world elapsed training time might take longer:
 
-- The service sometimes trains with multi-GPU depending on your data, which shortens wall-clock training time
-- The service sometimes trains multiple exploration trials on multiple GPUs at the same time
-- The service sometimes uses premier/faster GPU skus to train
-- The service decided there is no need to explore futher before budget runs out
+**Example**: With 2 hours budget specified, training starts at 3PM PST and finishes at 11PM PST (8 hours real-world elapsed time), and got billed for 2 hours training.
 
-The first three speed up training at the cost of using more budget in certain wall-clock time.
+**High Training Traffic**: If many users are training simultaneously, GPU resources can become limited. This might cause your job to be queued or paused, extending the duration.
+Backend Failures: Sometimes training can encounter expected or unexpected issues. Our system often retries after failures, and while the failed runs don’t count against your budget, they can extend the overall training time.
+**Data Storage Location**: If your data is stored in a region different from where your computer vision resource is located, it can take longer to transmit, thus adding to the training time.
+
+### Real-world elapsed training time might be shorter:
+
+**Example**: With 10 hours budget specified, training starts at 2PM PST and finishes at 6PM PST (4 hours real-world elapsed time), and got billed for 9 hours training.
+
+**Use of Multi-GPU**: Depending on your data size and complexity, the service might use multiple GPUs, which can reduce the actual training time.
+**Concurrent Exploration Trials**: The service can run multiple exploration trials using different GPUs simultaneously.
+**Upgraded GPU Models**: Occasionally, the service might use more advanced or faster GPU models, which can expedite training.
 
 ## Why does my training fail and what I should do?
 
