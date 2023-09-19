@@ -20,17 +20,17 @@ The **billing training time** can be different than **real-world elapsed trainin
 
 **Example**: With 2 hours budget specified, training starts at 3PM PST and finishes at 11PM PST (8 hours real-world elapsed time), and got billed for 2 hours training.
 
-**High Training Traffic**: If many users are training simultaneously, GPU resources can become limited. This might cause your job to be queued or paused, extending the duration.
+- **High Training Traffic**: If many users are training simultaneously, GPU resources can become limited. This might cause your job to be queued or paused, extending the duration.
 Backend Failures: Sometimes training can encounter expected or unexpected issues. Our system often retries after failures, and while the failed runs don’t count against your budget, they can extend the overall training time.
-**Data Storage Location**: If your data is stored in a region different from where your computer vision resource is located, it can take longer to transmit, thus adding to the training time.
+- **Data Storage Location**: If your data is stored in a region different from where your computer vision resource is located, it can take longer to transmit, thus adding to the training time.
 
 ### Real-world elapsed training time might be shorter:
 
 **Example**: With 10 hours budget specified, training starts at 2PM PST and finishes at 6PM PST (4 hours real-world elapsed time), and got billed for 9 hours training.
 
-**Use of Multi-GPU**: Depending on your data size and complexity, the service might use multiple GPUs, which can reduce the actual training time.
-**Concurrent Exploration Trials**: The service can run multiple exploration trials using different GPUs simultaneously.
-**Upgraded GPU Models**: Occasionally, the service might use more advanced or faster GPU models, which can expedite training.
+- **Use of Multi-GPU**: Depending on your data size and complexity, the service might use multiple GPUs, which can reduce the actual training time.
+- **Concurrent Exploration Trials**: The service can run multiple exploration trials using different GPUs simultaneously.
+- **Upgraded GPU Models**: Occasionally, the service might use more advanced or faster GPU models, which can expedite training.
 
 ## Why does my training fail and what I should do?
 
