@@ -5,24 +5,32 @@
 
 For quota limit information, please refer to [quota_limit.md](./quota_limit.md)
 
-## Why does my training take longer/shorter than my specified budget?
+## Why does my training duration differ from my specified budget?
 
-Note that the budget specified and actual charged training time are actual **compute time**, not wall-clock time. Some common reasons for the difference are listed below:
+There are three concetps: 
+- Specified training budget time
+- Billing training time
+- Real-world elapsed training time, aka wall clock time.
 
-### Longer than specified budget
+It's important to clarify that both the budget specified and the actual training time charged refer to compute time, not the real-world elapsed time. The training time billed will be never over your specified budget. Sometimes it might be way shorter than your specifid training budget, due to the training engine determining that further exploration isn't beneficial and completes the training before the budget is exhausted.
 
-- When there is a high training traffic, the GPU resources might be tight and your job might stay in queue or be on hold during training
-- Training in our backend runs into un/expected failures, which results in retrying logic. As the failed runs do not consume your budget, this can lead to longer training time in general
-- Your data is stored in a different region than your created computer vision resource, which will lead to longer data transmission time.
+The **billing training time** can be different than **real-world elapsed training time** for the following reasons.
 
-### Shorter than specified budget
+### Real-world elapsed training time might take longer:
 
-- The service sometimes trains with multi-GPU depending on your data, which shortens wall-clock training time
-- The service sometimes trains multiple exploration trials on multiple GPUs at the same time
-- The service sometimes uses premier/faster GPU skus to train
-- The service decided there is no need to explore futher before budget runs out
+**Example**: With 2 hours budget specified, training starts at 3PM PST and finishes at 11PM PST (8 hours real-world elapsed time), and got billed for 2 hours training.
 
-The first three speed up training at the cost of using more budget in certain wall-clock time.
+- **High Training Traffic**: If many users are training simultaneously, GPU resources can become limited. This might cause your job to be queued or paused, extending the duration.
+Backend Failures: Sometimes training can encounter expected or unexpected issues. Our system often retries after failures, and while the failed runs don’t count against your budget, they can extend the overall training time.
+- **Data Storage Location**: If your data is stored in a region different from where your computer vision resource is located, it can take longer to transmit, thus adding to the training time.
+
+### Real-world elapsed training time might be shorter:
+
+**Example**: With 10 hours budget specified, training starts at 2PM PST and finishes at 6PM PST (4 hours real-world elapsed time), and got billed for 9 hours training.
+
+- **Use of Multi-GPU**: Depending on your data size and complexity, the service might use multiple GPUs, which can reduce the actual training time.
+- **Concurrent Exploration Trials**: The service can run multiple exploration trials using different GPUs simultaneously.
+- **Upgraded GPU Models**: Occasionally, the service might use more advanced or faster GPU models, which can expedite training.
 
 ## Why does my training fail and what I should do?
 
@@ -31,13 +39,8 @@ Some common failures:
 - **diverged**: It means the training cannot learn meaningful things from your data. Some common causes are
   - Data is not enough: provide more data should help
   - Data is of bad quality: check if your images are of very low resolution, aspect ratio being very extreme, or annotations are wrong
-- **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training
-  - When you see this error, you can find a minimum budget required and a suggested budget in the training error message
-  - We provide you with a rough upfront minimum budget to train your model effectively and a recommended budget for optimal model quality. It's important to note that the minimum budget ensures basic model functionality. Investing sufficient budget into the training allows us to allocate more computational power and fine-tune the model extensively, leading to better outcomes.
-    - **Generic-Classifier**: the miminum budget is: **0.0003334 * num_images** hours. For optimal quality, try at least 5-10x higher than the min budget.
-    - **Generic-Detector**: the minimum budget hours is: **0.0066667 * num_images** hours. For optimal quality, try at least 3-5x higher than the min budget.
-    - **Product-Recognizer**: the minimum budget hours is: **0.0003334 * num_images * average_boxes_per_images** hours. For optimal quality, try at least 2-4x higher than the min budget.
-- **datasetCorrupt**: Usually this is due to the fact that your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
+- **notEnoughBudget**: it means your specified budget is not enough for the size of your dataset and model kind you are training. Specify more budget please
+- **datasetCorrupt**: Usually this is due to the fact your provided images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well
 - **datasetNotFound**: dataset cannot be found
 - **unknown**: It could be our system's issue, please reach out to us for investigation
 
@@ -48,8 +51,8 @@ Below are the possible reasons:
 - **internalServerError**: An unknown error occurred. Please try again later.
 - **modelNotFound**: The specified model was not found.
 - **datasetNotFound**: The specified dataset was not found.
-- **datasetCorrupt**: Usually this is due to the fact your provided annoation files or images are not accessible or annotation file is of wrong format. For annotation check, you can check [`cognitive_service_vision_model_customization.ipynb`](cognitive_service_vision_model_customization.ipynb) for annotation format documentation and run [`check_coco_annotation.ipynb`](check_coco_annotation.ipynb) for a quick check. You can check the error message returned from the API call response for dataset format violation as well.
-- **incorrectModelKind**: Model kind is not compatible to be evaluated on the selected dataset, e.g. evaluate a classification model on a detection dataset.
+- **datasetAnnotationsInvalid**: An error occurred while trying to download or parse the ground truth annotations associated with the test dataset.
+- **datasetEmpty**: The test dataset did not contain any ground truth annotations.
 
 ## Why does my dataset registery fail?
 
