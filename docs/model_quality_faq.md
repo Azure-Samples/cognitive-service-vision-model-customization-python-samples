@@ -2,13 +2,13 @@
 
 This guide outlines essential tips, insights, and best practices for ensuring top-tier AI performance using the Model Customization Service.
 
-## **1. Data Preparation**
+## **1. General Data Preparation**
 
-- **Descriptive Category Names:** The Vision Model Customization of Cognitive Service employs both image and text for training. Opt for clear and descriptive category names to boost the model's effectiveness.
+- **Descriptive Category Names:** The Cognitive Service Vision Model Customization employs both image and text for training. Opt for clear and descriptive category names to boost the model's effectiveness.
 
 ## **2. Training Dataset**
 
-- **Alignment with Production Needs:** Your training data should mirror the actual use-case scenario. For example, a model trained with a few internet images of wild tomcats might not effectively recognize a domesticated house cat.
+- **Alignment with Production Needs:** Your training data should mirror the actual use-case scenario. For example, a model trained with a few internet images of wild bobcats might not effectively recognize a domesticated house cat.
 - **Dataset Balance:** Aim for a dataset where every category is equally represented. Such balance can amplify the model's precision.
 - **Dataset Size and Diversity:** Generally, comprehensive and varied datasets lead to superior outcomes.
 - **Image Quality:** Low-quality images can obstruct efficient training. Ideally, images should be at least 800x600 pixels.
