@@ -1,21 +1,27 @@
-# Model Quality FAQ
+# **Guide to Optimal AI Quality with Model Customization Service**
 
-This documentation covers the knowledge, tips and good practice about training a model aiming for the best AI quality wtih Model Customization Service.
+This guide outlines essential tips, insights, and best practices for ensuring top-tier AI performance using the Model Customization Service.
 
-## Data Preparation
+## **1. General Data Preparation**
 
-- Meaningful category names: Cognitive Service Vision Model Customization utilized both image and text information in training, thus having meaningful category names can improve model quality
-- Training dataset:
-  - Keeping training dataset as close as possible to your production setting is essential to make sure your model works after being deployed. A bad example would be collecting a few images of tom cats from web, train an object detector and use the model to detect your pet cat in your house
-  - Most of time, keeping dataset balanced (each class is evenly represented in the dataset), if possible, can improve model quality
-  - If possible, for data, the more, the better; the more diverse, the better
-  - Very low resolution images could make it hard to train a good model. Try keep the image resolution at a reasonable size (e.g., 800x600).
-- Evaluation dataset:
-  - It is critical to have a meaningful evalution set large enough, close to your production setting to make an verdict on the quality of the your trained model
-  - When production setting changes, it is also recommended to update your evalution dataset
-- Object detection
-  - Bounding boxes being too small compared with image size can be problematic for training. Taking a 1080P image (1920x1080) as an example, it would be helpful to keep your bounding boxes larger than (40x20). Note that this is just an example, for some problem, it could be better to have bounding boxes larger than (80x40) for 1080P images.
+- **Descriptive Category Names:** The Cognitive Service Vision Model Customization employs both image and text for training. Opt for clear and descriptive category names to boost the model's effectiveness.
 
-## Training
+## **2. Training Dataset**
 
-- Specifing sufficient budget is key to good model quality. With insufficient budget, service can be limited in finding the best model for you
+- **Alignment with Production Needs:** Your training data should mirror the actual use-case scenario. For example, a model trained with a few internet images of wild bobcats might not effectively recognize a domesticated house cat.
+- **Dataset Balance:** Aim for a dataset where every category is equally represented. Such balance can amplify the model's precision.
+- **Dataset Size and Diversity:** Generally, comprehensive and varied datasets lead to superior outcomes.
+- **Image Quality:** Low-quality images can obstruct efficient training. Ideally, images should be at least 800x600 pixels.
+
+## **3. Evaluation Dataset**
+
+- **Relevance and Size:** Ensure your evaluation set is significant and mirrors your operational setting. This helps in gauging your model's real-world efficiency.
+- **Adaptability:** Regularly update the evaluation set, especially if there are shifts in the operational environment.
+
+## **4. Object Detection**
+
+- **Bounding Box Proportions:** If bounding boxes are too small compared to the entire image, it could hamper training. For a 1080P image (1920x1080), it's advisable for bounding boxes to be a minimum of (40x20) pixels. Depending on the context, (80x40) pixels might be even more suitable.
+
+## **5. Training Budget**
+
+- **Adequate Funding:** Ensure sufficient budget allocation. A constrained budget can limit the service's capability to determine the best-suited model for your requirements.
