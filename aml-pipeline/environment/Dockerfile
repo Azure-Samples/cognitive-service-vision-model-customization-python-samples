@@ -14,4 +14,5 @@ RUN pip install 'azureml-core==1.49.0' \
                 'torchvision' \
                 'pillow' \
                 'loguru' \
-                'cognitive-service-vision-model-customization-python-samples==0.0.5'
+                # 'cognitive-service-vision-model-customization-python-samples==0.0.5' \
+                'git+https://github.com/karolzak/cognitive-service-vision-model-customization-python-samples'

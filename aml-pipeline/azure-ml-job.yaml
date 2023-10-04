@@ -16,17 +16,20 @@ command: >-
   --time_budget_in_hours ${{inputs.time_budget_in_hours}}
   --inference ${{inputs.inference}}
   --inference_data_path ${{inputs.inference_data_path}}
+  --coco_json_url ${{inputs.coco_json_url}}
 
 inputs:
   # TODO: resolve resource key
   uvs_resource_key: ""
   model_name: "cat_dog_model"
-  train_aml_dataset_name: "cats_n_dogs"
+  # coco_json_url: "https://<storage_acc_name>.blob.core.windows.net/<container>/path/to/coco_info.json"
+  coco_json_url: "https://kzaml8086076148.blob.core.windows.net/datasets/cats_n_dogs/coco_info.json"
+  train_aml_dataset_name: "cats_n_dogs_v2"
   train: True
   time_budget_in_hours: 6
   inference: False
   inference_data_path:
-    path: azureml:cats_n_dogs@latest
+    path: azureml:cats_n_dogs_v2:1
 
 # What code to make available
 code: .

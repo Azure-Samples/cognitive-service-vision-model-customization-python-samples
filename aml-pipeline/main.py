@@ -32,6 +32,7 @@ def run(
     time_budget_in_hours: int = 20,  # 20 hours
     inference: bool = False,
     inference_data_path: str = "",
+    coco_json_url: str = ""
 ):
     if not os.path.exists("outputs/"):
         os.makedirs("outputs/")
@@ -58,6 +59,7 @@ def run(
             resource_name,
             multi_service_endpoint,
             resource_key,
+            coco_json_url
         )
 
         train_params = TrainingParameters(
@@ -275,6 +277,12 @@ def parse_args():
         help="path of AML dataset to be mount for inference",
         default=""
     )
+    parser.add_argument(
+        "--coco_json_url",
+        type= str,
+        help="Full url to coco json file for training dataset",
+        default=""
+    )
 
     args = parser.parse_args()
     return args
@@ -290,4 +298,5 @@ if __name__ == "__main__":
         time_budget_in_hours=args.time_budget_in_hours,
         inference=args.inference,
         inference_data_path=args.inference_data_path,
+        coco_json_url=args.coco_json_url
     )

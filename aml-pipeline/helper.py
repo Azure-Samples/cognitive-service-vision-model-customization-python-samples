@@ -110,6 +110,7 @@ def aml_to_uvs_dataset(
     resource_name: str,
     multi_service_endpoint: str,
     resource_key: str,
+    coco_json_url: str
 ) -> None:
     """
     Function to transform AML to UVS compatible dataset.
@@ -126,7 +127,7 @@ def aml_to_uvs_dataset(
     """
 
     # annotation_file, storage_base = extract_florence_spec(aml_ds)
-    annotation_file = extract_florence_spec(aml_ds)
+    # annotation_file = extract_florence_spec(aml_ds)
 
 
     dataset_client = DatasetClient(
@@ -136,7 +137,8 @@ def aml_to_uvs_dataset(
     ds = Dataset(
         name=aml_ds,
         annotation_kind=AnnotationKind.MULTICLASS_CLASSIFICATION,
-        annotation_file_uris=[annotation_file]
+        annotation_file_uris=[coco_json_url]
+        # annotation_file_uris=[annotation_file]
     )
 
     # Check if dataset exists
@@ -156,7 +158,8 @@ def aml_to_uvs_dataset(
         ds = Dataset(
             name=aml_ds,
             annotation_kind=AnnotationKind.MULTICLASS_CLASSIFICATION,
-            annotation_file_uris=[annotation_file]
+        annotation_file_uris=[coco_json_url]
+        # annotation_file_uris=[annotation_file]
         )
         dataset_client.register_dataset(ds)
     return aml_ds
