@@ -13,3 +13,23 @@ TODO:
 - cd cognitive-service-vision-model-customization-python-samples/aml-pipeline
 - run python adjust_coco.py -s 'new_blob_name'
 - Register Dataset in AML
+
+### Documentation:
+
+#### Prerequisites:
+
+- Create AML Workspace
+- Clone repo
+
+#### Steps for dataset:
+
+- create a storage account/container
+- run script to modify coco json 
+- upload dataset + coco to container via Azure Portal
+- register the datastore + dataset
+
+#### For Florence/UVS:
+
+- Create Compute Vision resource
+- Enable managed identity
+- Assign Blob Storage Contributor rights to CV MI
