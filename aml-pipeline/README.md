@@ -17,9 +17,25 @@ TODO:
 ### Documentation:
 
 #### Prerequisites:
+Required Azure Resources:
+- **[Azure Machine Learning](https://ml.azure.com/)**
+- **[Azure AI Vision Studio](https://portal.vision.cognitive.azure.com/)**
+- **[Azure Storage Account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)**
 
-- Create AML Workspace
-- Clone repo
+### Preparations for Model Training:
+- #### Clone repository
+- #### Data Set:
+  - Create a new folder in Storage Account: "cats-dogs"
+  - Modify coco_url in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running ```python adjust_coco.py -s 'your_storage_account_name'```
+  - Upload adjusted coco json file and associated images to Blob Container "cats-dogs"
+  - Register Datastore and DataAsset in AML
+- #### Florence Model/UVS:
+  - Enable Managed Identity for Azure AI Vision: ![](docs/image-1.png)
+  - Assign Storage Blob Data Contributor Role for Managed Identity:
+    - Select Role ![](docs/image-2.png)
+    - Select Storage Blob Data Contributor ![](docs/image-3.png)
+    - Assign access to Managed Identity ![](docs/image-4.png)
+    - Review and Assign ![](docs/image-5.png)
 
 #### Steps for dataset:
 
