@@ -1,6 +1,13 @@
 ```az ml job create -f azure-ml-job.yaml --resource-group kz-aml-rg --workspace-name kz-aml --set inputs.uvs_resource_key="<cogs_key>"```
 
 ## Overview
+This is a solution accelerator to connect the dots between Azure Machine Learning (AML) and Azure AI Vision to easily train and evaluate a custom [Multimodal Foundational Model - Florence](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/) using familiar Data Science tools (such as AML DataAssets, CLIv2 or MLFlow).
+The high-level features are: 
+- Full control originating from a single yaml file
+- Automatic Dataset Registration and Model Training/Inference in Azure AI Vision Studio
+- ...
+
+![Custom Model in AI Vision Studio](docs/image-16.png)
 
 TODO: add overview description of what this is and why is it super extra cool.
 TODO: features list?
@@ -19,11 +26,11 @@ TODO: Add image with 99 or 100% accuracy metrics from Vision portal?
 - #### Clone the repository
 - #### Prepare, upload and register the dataset in AML
   - Create a new Container in Storage Account and name it `cats-dogs`
+    - ![](docs/image-6.png)
+    - ![](docs/image-7.png)
   - Modify `coco_url` fields in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running:   
     ```python adjust_coco.py -s 'your_storage_account_name'```
   - Upload adjusted coco json file and associated images to the newly created Blob Container `cats-dogs`   
-    - ![](docs/image-6.png)
-    - ![](docs/image-7.png)
   - Register DataStore and DataAsset in AML
     - Create a DataStore: Go to AML workspace -> Data -> Datastores
       - ![](docs/image-8.png)
