@@ -1,51 +1,40 @@
 ```az ml job create -f azure-ml-job.yaml --resource-group kz-aml-rg --workspace-name kz-aml --set inputs.uvs_resource_key="<cogs_key>"```
 
-TODO:
-- UVS/Cogs
-  - Document Create CogS resource and request access for public preview
-  - https://aka.ms/visionaipublicpreview
-- Dataset
-  - Document format requirements (COCO)
-  - Document registration/upload in AML
-  - Document Managed Identity access for UVS/CogS to storage account
+## Overview
 
-## Dataset Adjustment and Upload to AML
-- cd cognitive-service-vision-model-customization-python-samples/aml-pipeline
-- run python adjust_coco.py -s 'new_blob_name'
-- Register Dataset in AML
+TODO: add overview description of what this is and why is it super extra cool.
+TODO: features list?
+TODO: Add image with 99 or 100% accuracy metrics from Vision portal?
 
-### Documentation:
+## How to use this repo
 
-#### Prerequisites:
-Required Azure Resources:
-- **[Azure Machine Learning](https://ml.azure.com/)**
-- **[Azure AI Vision Studio](https://portal.vision.cognitive.azure.com/)**
-- **[Azure Storage Account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)**
+### Prerequisites:
+- **Azure Subscription - [Free trial](https://azure.microsoft.com/en-in/free/)**
+- **[Azure Machine Learning Workspace](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2)**
+- **[Azure AI Vision](https://azure.microsoft.com/en-us/products/ai-services/ai-vision/)**
+- **[Azure Storage Account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)** - you can either create a new resource or reuse Storage Account automatically created by AML Workspace
+- **[Azure ML CLI v2](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public)** - you will need this to run a training job against AML Workspace
 
 ### Preparations for Model Training:
-- #### Clone repository
-- #### Data Set:
-  - Create a new folder in Storage Account: "cats-dogs"
-  - Modify coco_url in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running ```python adjust_coco.py -s 'your_storage_account_name'```
-  - Upload adjusted coco json file and associated images to Blob Container "cats-dogs"
+- #### Clone the repository
+- #### Prepare, upload and register the dataset in AML
+  - Create a new Container in Storage Account and name it `cats-dogs`
+  - Modify `coco_url` fields in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running:   
+    ```python adjust_coco.py -s 'your_storage_account_name'```
+  - Upload adjusted coco json file and associated images to the newly created Blob Container `cats-dogs`   
+    - TODO: add steps with screenshot ???
   - Register Datastore and DataAsset in AML
-- #### Florence Model/UVS:
-  - Enable Managed Identity for Azure AI Vision: ![](docs/image-1.png)
-  - Assign Storage Blob Data Contributor Role for Managed Identity:
-    - Select Role ![](docs/image-2.png)
-    - Select Storage Blob Data Contributor ![](docs/image-3.png)
-    - Assign access to Managed Identity ![](docs/image-4.png)
-    - Review and Assign ![](docs/image-5.png)
-
-#### Steps for dataset:
-
-- create a storage account/container
-- run script to modify coco json 
-- upload dataset + coco to container via Azure Portal
-- register the datastore + dataset
-
-#### For Florence/UVS:
-
-- Create Compute Vision resource
-- Enable managed identity
-- Assign Blob Storage Contributor rights to CV MI
+    - TODO: add steps with screenshots
+- #### Enable Azure AI Vision service access to your data  
+  In order for Azure AI Vision service to safely access files in your Azure Storage you need to assign `Storage Blob Data Contributor` role to it:
+  - First you need to enable Managed Identity on your Azure AI Vision resource:  
+    ![](docs/image-1.png)
+  - Next, assign `Storage Blob Data Contributor` role to Computer Vision resource Managed Identity:
+    - Select Role   
+      ![](docs/image-2.png)
+    - Select Storage Blob Data Contributor   
+      ![](docs/image-3.png)
+    - Assign access to Managed Identity   
+      ![](docs/image-4.png)
+    - Review and Assign   
+      ![](docs/image-5.png)
