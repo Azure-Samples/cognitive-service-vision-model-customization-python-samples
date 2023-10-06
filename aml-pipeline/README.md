@@ -22,9 +22,22 @@ TODO: Add image with 99 or 100% accuracy metrics from Vision portal?
   - Modify `coco_url` fields in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running:   
     ```python adjust_coco.py -s 'your_storage_account_name'```
   - Upload adjusted coco json file and associated images to the newly created Blob Container `cats-dogs`   
-    - TODO: add steps with screenshot ???
-  - Register Datastore and DataAsset in AML
-    - TODO: add steps with screenshots
+    - ![](docs/image-6.png)
+    - ![](docs/image-7.png)
+  - Register DataStore and DataAsset in AML
+    - Create a DataStore: Go to AML workspace -> Data -> Datastores
+      - ![](docs/image-8.png)
+      - We suggest to name the datastore ´cats_dogs_datastore´, select the storage account with the previously created ´cats-dogs´ container and copy the account key from the storage account "Access keys" 
+        ![](docs/image-9.png)
+    - Create a DataAsset: Go to AML workspace -> Data -> Data assets
+      - ![](docs/image-10.png)
+      - ![](docs/image-11.png)
+      - ![](docs/image-12.png)
+      - ![](docs/image-13.png)
+      - ![](docs/image-14.png)
+      - ![](docs/image-15.png)
+    - 
+
 - #### Enable Azure AI Vision service access to your data  
   In order for Azure AI Vision service to safely access files in your Azure Storage you need to assign `Storage Blob Data Contributor` role to it:
   - First you need to enable Managed Identity on your Azure AI Vision resource:  
