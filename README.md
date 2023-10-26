@@ -2,7 +2,7 @@
 
 ## Model Customization
 
-Computer Vision's Model Customization is a custom model training service that allows users like developers to easily train an image classification model (Multiclass only for now) or object detection model, with low-code experience and very little understanding of machine learning or computer vision required.
+Computer Vision's Model Customization is a custom model training service that allows users like developers to easily train an image classification model (Multiclass only for now) or object detection model, with low-code experience and very little understanding of machine learning or computer vision required. The service is available in regions: West US 2, East US, West Europe.
 
 This is a sample repository demonstrating how to train and predict a custom model with Cognitive Service for Vision, using Python. To get started, check out [this tutorial in Python notebook](./docs/cognitive_service_vision_model_customization.ipynb).
 
