@@ -128,7 +128,7 @@ def annotations_check(annotations: List, data_type: str, max_img_id: int, max_ca
         ann_cate_id = annotation['category_id']
         category_stats[ann_cate_id] = category_stats.get(ann_cate_id, 0) + 1
 
-    print(f'category stats {category_stats}.')
+    print(f'Number of images per category: {category_stats}.')
     for cat_id, stat in category_stats.items():
         _check(stat >= quota_limit.min_image_cnt_per_tag, f'Each category must have >= {quota_limit.min_image_cnt_per_tag} images present, only {stat} images found for category {cat_id}.')
 
