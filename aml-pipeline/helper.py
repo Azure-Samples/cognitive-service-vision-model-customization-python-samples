@@ -116,6 +116,7 @@ def aml_to_uvs_dataset(
         resource_name (str): Name of resource (Currently empty string)
         multi_service_endpoint (str): Cognitive Service Resource Endpoint URI
         resource_key (str): Resource key for Cognitive Service Resource
+        coco_json_url (str): URL to coco.json annotation file
     """
     dataset_client = DatasetClient(
         resource_type, resource_name, multi_service_endpoint, resource_key
