@@ -1,3 +1,4 @@
+## AML Job Execution:
 ```az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"```
 
 ## Overview
@@ -27,8 +28,8 @@ The result of a trained model in the AI Vision Studio looks as follows:
     - ![](docs/image-6.png)
     - ![](docs/image-7.png)
   - Modify `coco_url` fields in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running:   
-    ```python adjust_coco.py -s 'your_storage_account_name'```
-  - Upload adjusted coco json file and associated images to the newly created Blob Container `cats-dogs`   
+    ```python adjust_coco.py -s 'your_storage_account_name'``` --> Make sure the `coco_url` shows the correct blob url path
+  - Upload your adjusted coco json file and associated images to the newly created Blob Container `cats-dogs`   
   - Register DataStore and DataAsset in AML
     - Create a DataStore: Go to AML workspace -> Data -> Datastores
       - ![](docs/image-8.png)
