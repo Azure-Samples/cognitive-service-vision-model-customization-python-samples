@@ -18,7 +18,6 @@ from cognitive_service_vision_model_customization_python_samples import (
 )
 from datetime import datetime
 from helper import create_barplot, aml_to_uvs_dataset, get_secret, str2bool, read_img_as_bytes, mlflow_safe_log
-from collections import defaultdict
 
 from common.analyser.metrics.classification_metrics import ClassificationMetrics
 from common.analyser.error_analysis.classification_analysis import ClassificationAnalysis

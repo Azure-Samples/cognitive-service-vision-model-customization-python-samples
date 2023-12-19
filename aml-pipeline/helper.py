@@ -94,14 +94,6 @@ def extract_florence_spec(aml_ds: str) -> Tuple[str, str]:
         + str(blob_folder)
         + "/coco_info.json"
     )
-    # storage_base = (
-    #     "https://"
-    #     + str(datastore.account_name)
-    #     + ".blob.core.windows.net/"
-    #     + str(datastore.container_name)
-    # )
-
-    # return annotation_file, storage_base
     return annotation_file
 
 def aml_to_uvs_dataset(
@@ -164,35 +156,35 @@ def aml_to_uvs_dataset(
         dataset_client.register_dataset(ds)
     return aml_ds
 
-def create_barplot(ean: list, ean_acc: list) -> matplotlib.figure.Figure:
+def create_barplot(categories: list, category_acc: list) -> matplotlib.figure.Figure:
     """
-    Function to create custom barplot for AML Metrics Dashboard.
-    The plot contains the average accuracy per individual product (EAN Level).
+    Function to create an example custom barplot for AML Metrics Dashboard.
+    The plot contains the average accuracy per individual class.
 
     Args:
-        ean (list): List of EAN
-        ean_acc (list): List of average accuracies
+        categories (list): List of classes
+        category_acc (list): List of average accuracies
 
     Returns:
         matplotlib figure: Custom figure
     """
 
-    unsorted_list = [(each_ean_acc, each_ean) for each_ean, each_ean_acc in zip(ean, ean_acc)]
+    unsorted_list = [(each_category_acc, each_category) for each_category, each_category_acc in zip(categories, category_acc)]
     sorted_list = sorted(unsorted_list, reverse=True)
 
-    ean_sorted = []
-    ean_acc_sorted = []
+    category_sorted = []
+    category_acc_sorted = []
 
     for i in sorted_list:
-        ean_sorted += [i[1]]
-        ean_acc_sorted += [i[0]]
+        category_sorted += [i[1]]
+        category_acc_sorted += [i[0]]
 
     fig = plt.figure(figsize=(30,30), facecolor='white')
     plt.rc('font', size=20) 
-    plt.bar(ean_sorted, ean_acc_sorted)
+    plt.bar(category_sorted, category_acc_sorted)
     plt.title("Individual Accuracy")
-    plt.xlabel("EAN")
-    plt.ylabel("Accuracy per EAN")
+    plt.xlabel("Category")
+    plt.ylabel("Accuracy per category")
     plt.xticks(rotation=90)
     plt.tight_layout()
 
