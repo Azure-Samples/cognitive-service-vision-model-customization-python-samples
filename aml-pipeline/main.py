@@ -6,7 +6,6 @@ import pandas as pd
 
 logging.getLogger().setLevel(logging.INFO)
 from azureml.core import Run
-from azureml.core import Dataset as amlds
 import mlflow
 from cognitive_service_vision_model_customization_python_samples import (
     ResourceType,
@@ -36,9 +35,7 @@ def run(
     if not os.path.exists("outputs/"):
         os.makedirs("outputs/")
         print(">>>>>>>Created 'outputs' dir..")
-    # TODO: Change hardcoded values to function args
-    # resource_type = ResourceType.SINGLE_SERVICE_RESOURCE  # or ResourceType.MULTI_SERVICE_RESOURCE
-    resource_type = ResourceType.MULTI_SERVICE_RESOURCE
+    resource_type = ResourceType.MULTI_SERVICE_RESOURCE # resource_type = ResourceType.SINGLE_SERVICE_RESOURCE  # or ResourceType.MULTI_SERVICE_RESOURCE
     resource_name = ""  # not used / leave empty string
     multi_service_endpoint = "https://westeurope.api.cognitive.microsoft.com/"
 
@@ -102,10 +99,8 @@ def run(
         "model_type": "uvs_florence",
         "uvs_model_name": model.name,
         "status": model.status,
-        #"failure_code": model.failure_error_code,
         "error_message": model.error,
         "training_params": model.training_params,
-        #"model_kind": model.training_params.model_kind,
         "time_budget_in_hours": model.training_params.time_budget_in_hours,
     }
     mlflow.set_tags(tags)
@@ -122,7 +117,7 @@ def run(
                     ean_acc.append(ind_acc_float)
 
     fig = create_barplot(ean, ean_acc)
-    mlflow_safe_log(mlflow.log_figure, fig, "per_ean_accuracy.png")
+    mlflow_safe_log(mlflow.log_figure, fig, "per_class_accuracy.png")
 
     model_metrics["training_cost_in_minutes"] = model.training_cost_in_minutes
     mlflow.log_metrics(model_metrics)

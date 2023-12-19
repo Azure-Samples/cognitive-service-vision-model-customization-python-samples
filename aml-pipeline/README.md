@@ -1,20 +1,18 @@
-```az ml job create -f azure-ml-job.yaml --resource-group kz-aml-rg --workspace-name kz-aml --set inputs.uvs_resource_key="<cogs_key>"```
+```az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"```
 
 ## Overview
-This is a solution accelerator to connect the dots between Azure Machine Learning (AML) and Azure AI Vision to easily train and evaluate a custom [Multimodal Foundational Model - Florence](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/) using familiar Data Science tools (such as AML DataAssets, CLIv2 or MLFlow).
-The high-level features are: 
-- Full control originating from a single yaml file
-- Automatic Dataset Registration and Model Training/Inference in Azure AI Vision Studio
-- ...
+This is a solution accelerator to bridge the gap between Azure Machine Learning (AML) and Azure AI Vision to easily train and evaluate a custom [Multimodal Foundational Model - Florence](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/) using familiar Data Science tools (such as AML DataAssets, CLIv2 or MLFlow).
 
+The high-level features are: 
+- Full control originating from a single yaml file, leveraging the CLI v2
+- Built-in AML functionalities, such as direct usage of AML Dataset or comparison of metrics across different AML jobs
+- Model Training and/or Inference in Azure AI Vision Studio
+
+The result of a trained model in the AI Vision Studio looks as follows:
 ![Custom Model in AI Vision Studio](docs/image-16.png)
 
-TODO: add overview description of what this is and why is it super extra cool.
-TODO: features list?
-TODO: Add image with 99 or 100% accuracy metrics from Vision portal?
 
 ## How to use this repo
-
 ### Prerequisites:
 - **Azure Subscription - [Free trial](https://azure.microsoft.com/en-in/free/)**
 - **[Azure Machine Learning Workspace](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2)**
@@ -58,3 +56,6 @@ TODO: Add image with 99 or 100% accuracy metrics from Vision portal?
       ![](docs/image-4.png)
     - Review and Assign   
       ![](docs/image-5.png)
+
+As soon as you completed the above mentioned steps, you can submit a AML job with the following command:
+```az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"```

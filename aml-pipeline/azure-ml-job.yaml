@@ -3,8 +3,7 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 
 # Name of the experiment where all jobs will end up in the Azure ML dashboard
-# TODO: rename experiment to uvs-florence
-experiment_name: florence-training
+experiment_name: florence-image-classifier
 
 # What to run
 command: >-
@@ -19,17 +18,16 @@ command: >-
   --coco_json_url ${{inputs.coco_json_url}}
 
 inputs:
-  # TODO: resolve resource key
   uvs_resource_key: ""
-  model_name: "cat_dog_model"
+  model_name: "cat_dog_model_2"
   # coco_json_url: "https://<storage_acc_name>.blob.core.windows.net/<container>/path/to/coco_info.json"
-  coco_json_url: "https://kzaml8086076148.blob.core.windows.net/datasets/cats_n_dogs/coco_info.json"
-  train_aml_dataset_name: "cats_n_dogs_v2"
-  train: True
+  coco_json_url: "https://playgroundyvon3930433822.blob.core.windows.net/cats-dogs/coco_info.json"
+  train_aml_dataset_name: "cat_dog_asset"
+  train: False
   time_budget_in_hours: 6
-  inference: False
+  inference: True
   inference_data_path:
-    path: azureml:cats_n_dogs_v2:1
+    path: azureml:cat_dog_asset:1
 
 # What code to make available
 code: .

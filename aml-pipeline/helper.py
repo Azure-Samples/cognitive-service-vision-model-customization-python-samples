@@ -33,7 +33,7 @@ def mlflow_safe_log(function, *args):
 
 def get_secret(name: str) -> str:
     """
-    Function to extract secrets from Azure KeyVault.
+    Optional function to extract secrets from Azure KeyVault.
 
     Args:
         name (str): secret key for which the value is needed
@@ -117,11 +117,6 @@ def aml_to_uvs_dataset(
         multi_service_endpoint (str): Cognitive Service Resource Endpoint URI
         resource_key (str): Resource key for Cognitive Service Resource
     """
-
-    # annotation_file, storage_base = extract_florence_spec(aml_ds)
-    # annotation_file = extract_florence_spec(aml_ds)
-
-
     dataset_client = DatasetClient(
         resource_type, resource_name, multi_service_endpoint, resource_key
     )
@@ -130,7 +125,6 @@ def aml_to_uvs_dataset(
         name=aml_ds,
         annotation_kind=AnnotationKind.MULTICLASS_CLASSIFICATION,
         annotation_file_uris=[coco_json_url]
-        # annotation_file_uris=[annotation_file]
     )
 
     # Check if dataset exists
@@ -141,7 +135,6 @@ def aml_to_uvs_dataset(
     except:
         print("Dataset is already registered in UVS.")
 
-        # TO DO: Decide if it's necessary to re-register dataset with different name.
         aml_ds = aml_ds + "_" + str(datetime.now().strftime("%m%d%Y%H%M%S"))
         print(
             "Dataset name already exists in UVS... created new dataset with name: ",
@@ -151,7 +144,6 @@ def aml_to_uvs_dataset(
             name=aml_ds,
             annotation_kind=AnnotationKind.MULTICLASS_CLASSIFICATION,
         annotation_file_uris=[coco_json_url]
-        # annotation_file_uris=[annotation_file]
         )
         dataset_client.register_dataset(ds)
     return aml_ds
