@@ -2,6 +2,7 @@ import argparse
 import os
 import logging
 import json
+import time
 import pandas as pd
 
 logging.getLogger().setLevel(logging.INFO)
@@ -105,18 +106,18 @@ def run(
     }
     mlflow.set_tags(tags)
     model_metrics = {}
-    ean_acc = []
+    category_acc = []
     for k, v in model.model_performance.items():
         if type(v) in [int, float]:
             model_metrics[k] = v
         if k == "tagPerformance":
-            ean = [key for key in v.keys()]
+            categories = [key for key in v.keys()]
             acc_list = [val for val in v.values()]
             for ind_acc in acc_list:
                 for ind_acc_float in ind_acc.values():
-                    ean_acc.append(ind_acc_float)
+                    category_acc.append(ind_acc_float)
 
-    fig = create_barplot(ean, ean_acc)
+    fig = create_barplot(categories, category_acc)
     mlflow_safe_log(mlflow.log_figure, fig, "per_class_accuracy.png")
 
     model_metrics["training_cost_in_minutes"] = model.training_cost_in_minutes
@@ -196,6 +197,8 @@ def run(
                 "predictions": predictions
             }
             inference_results.append(img_inference_results)
+            print("inference_results: ", inference_results)
+            time.sleep(10)
             ######
 
         model_predictions_results["predictions"] = {"classification": model_predictions}
@@ -204,13 +207,13 @@ def run(
         df_inf_results.to_csv("outputs/test_results.csv", index=False)
         mlflow_safe_log(mlflow.log_artifact, "outputs/test_results.csv")
         print("###############")
-        top_k_list = [3, 4, 5]
-        classification_metrics = ClassificationMetrics(ground_truth=inference_coco_annotation_file,
-                                                       predictions=model_predictions_results,
-                                                       params={"top_k_list": top_k_list})
-        metrics = classification_metrics.calculate()
-        mlflow.log_metrics(metrics)
-        classification_metrics.mlflow_log(log_path="mlflow_logs")
+        # top_k_list = [2, 3, 4]
+        # classification_metrics = ClassificationMetrics(ground_truth=inference_coco_annotation_file,
+        #                                                predictions=model_predictions_results,
+        #                                                params={"top_k_list": top_k_list})
+        # metrics = classification_metrics.calculate()
+        # mlflow.log_metrics(metrics)
+        # classification_metrics.mlflow_log(log_path="mlflow_logs")
 
         classification_analysis = ClassificationAnalysis(ground_truth=inference_coco_annotation_file,
                                                          predictions=model_predictions_results,

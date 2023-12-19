@@ -12,6 +12,9 @@ The high-level features are:
 The result of a trained model in the AI Vision Studio looks as follows:
 ![Custom Model in AI Vision Studio](docs/image-16.png)
 
+Here is an example of a confusion matrix generated during model inference:
+![](docs/image-17.png)
+
 
 ## How to use this repo
 ### Prerequisites:
@@ -57,6 +60,7 @@ The result of a trained model in the AI Vision Studio looks as follows:
       ![](docs/image-4.png)
     - Review and Assign   
       ![](docs/image-5.png)
+  - In case you still receive permission right errors: Repeat this step on Blob Container level
 
 As soon as you completed the above mentioned steps, you can submit a AML job with the following command:
 ```az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"```
