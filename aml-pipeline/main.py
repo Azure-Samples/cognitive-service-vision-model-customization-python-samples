@@ -207,13 +207,15 @@ def run(
         df_inf_results.to_csv("outputs/test_results.csv", index=False)
         mlflow_safe_log(mlflow.log_artifact, "outputs/test_results.csv")
         print("###############")
-        # top_k_list = [2, 3, 4]
-        # classification_metrics = ClassificationMetrics(ground_truth=inference_coco_annotation_file,
-        #                                                predictions=model_predictions_results,
-        #                                                params={"top_k_list": top_k_list})
-        # metrics = classification_metrics.calculate()
-        # mlflow.log_metrics(metrics)
-        # classification_metrics.mlflow_log(log_path="mlflow_logs")
+        # Select the number of top classes you want to calculate
+        # Read more here: https://medium.com/nanonets/evaluating-models-using-the-top-n-accuracy-metrics-c0355b36f91b
+        top_k_list = [2] # Selected 2 because we only have 2 classes in the dataset
+        classification_metrics = ClassificationMetrics(ground_truth=inference_coco_annotation_file,
+                                                       predictions=model_predictions_results,
+                                                       params={"top_k_list": top_k_list})
+        metrics = classification_metrics.calculate()
+        mlflow.log_metrics(metrics)
+        classification_metrics.mlflow_log(log_path="mlflow_logs")
 
         classification_analysis = ClassificationAnalysis(ground_truth=inference_coco_annotation_file,
                                                          predictions=model_predictions_results,
