@@ -1,6 +1,3 @@
-## AML Job Execution:
-```az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"```
-
 ## Overview
 This is a solution accelerator to bridge the gap between Azure Machine Learning (AML) and Azure AI Vision to easily train and evaluate a custom [Multimodal Foundational Model - Florence](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/) using familiar Data Science tools (such as AML DataAssets, CLIv2 or MLFlow).
 
@@ -31,36 +28,44 @@ Here is an example of a confusion matrix generated during model inference:
     - ![](docs/image-6.png)
     - ![](docs/image-7.png)
   - Modify `coco_url` fields in [coco json file](aml-pipeline/data/cats_dogs/coco_info.json) by running:   
-    ```python adjust_coco.py -s 'your_storage_account_name'``` --> Make sure the `coco_url` shows the correct blob url path
+    `python adjust_coco.py -s 'your_storage_account_name'` --> Make sure the `coco_url` shows the correct blob url path
   - Upload your adjusted coco json file and associated images to the newly created Blob Container `cats-dogs`   
   - Register DataStore and DataAsset in AML
-    - Create a DataStore: Go to AML workspace -> Data -> Datastores
+    - Create a DataStore: Go to AML workspace -> Data -> Datastores  
       - ![](docs/image-8.png)
-      - We suggest to name the datastore ´cats_dogs_datastore´, select the storage account with the previously created ´cats-dogs´ container and copy the account key from the storage account "Access keys" 
+      - We suggest to name the datastore ´cats_dogs_datastore´, select the storage account with the previously created ´cats-dogs´ container and copy the account key from the storage account "Access keys"  
         ![](docs/image-9.png)
-    - Create a DataAsset: Go to AML workspace -> Data -> Data assets
-      - ![](docs/image-10.png)
-      - ![](docs/image-11.png)
-      - ![](docs/image-12.png)
-      - ![](docs/image-13.png)
-      - ![](docs/image-14.png)
-      - ![](docs/image-15.png)
-    - 
+    - Create a DataAsset: Go to AML workspace -> Data -> Data assets  
+      ![](docs/image-10.png)  
 
-- #### Enable Azure AI Vision service access to your data  
+      ![](docs/image-11.png)  
+
+      ![](docs/image-12.png)  
+
+      ![](docs/image-13.png)  
+
+      ![](docs/image-14.png)  
+      
+      ![](docs/image-15.png)  
+
+#### Enable Azure AI Vision service access to your data  
   In order for Azure AI Vision service to safely access files in your Azure Storage you need to assign `Storage Blob Data Contributor` role to it:
   - First you need to enable Managed Identity on your Azure AI Vision resource:  
     ![](docs/image-1.png)
   - Next, assign `Storage Blob Data Contributor` role to Computer Vision resource Managed Identity:
     - Select Role   
-      ![](docs/image-2.png)
+      ![](docs/image-2.png)  
     - Select Storage Blob Data Contributor   
-      ![](docs/image-3.png)
+      ![](docs/image-3.png)  
     - Assign access to Managed Identity   
-      ![](docs/image-4.png)
+      ![](docs/image-4.png)  
     - Review and Assign   
-      ![](docs/image-5.png)
+      ![](docs/image-5.png)  
   - In case you still receive permission right errors: Repeat this step on Blob Container level
 
+### AML Job Execution command:
+
 As soon as you completed the above mentioned steps, you can submit a AML job with the following command:
-```az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"```
+```
+az ml job create -f azure-ml-job.yaml --resource-group my-resource-group --workspace-name my-workspace-name --set inputs.uvs_resource_key="my-computer-vision-key1"
+```
