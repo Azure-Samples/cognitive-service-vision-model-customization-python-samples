@@ -1,0 +1,40 @@
+# Tells Azure ML what kind of YAML this is.
+#  Docs: https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-job-command
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+# Name of the experiment where all jobs will end up in the Azure ML dashboard
+experiment_name: florence-image-classifier
+
+# What to run
+command: >-
+  python main.py
+  --uvs_resource_key ${{inputs.uvs_resource_key}}
+  --model_name ${{inputs.model_name}}
+  --train ${{inputs.train}}
+  --train_aml_dataset_name ${{inputs.train_aml_dataset_name}}
+  --time_budget_in_hours ${{inputs.time_budget_in_hours}}
+  --inference ${{inputs.inference}}
+  --inference_data_path ${{inputs.inference_data_path}}
+  --coco_json_url ${{inputs.coco_json_url}}
+
+inputs:
+  uvs_resource_key: ""
+  model_name: "cat_dog_model_2"
+  # coco_json_url: "https://<storage_acc_name>.blob.core.windows.net/<container>/path/to/coco_info.json"
+  coco_json_url: "https://playgroundyvon3930433822.blob.core.windows.net/cats-dogs/coco_info.json"
+  train_aml_dataset_name: "cat_dog_asset"
+  train: True
+  time_budget_in_hours: 6
+  inference: True
+  inference_data_path:
+    path: azureml:cat_dog_asset:1
+
+# What code to make available
+code: .
+
+# Where to run it
+environment:
+  build:
+    path: ./environment
+
+compute: azureml:compute-cluster-cpu
