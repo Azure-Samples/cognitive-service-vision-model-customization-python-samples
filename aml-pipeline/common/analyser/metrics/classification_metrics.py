@@ -62,10 +62,6 @@ class ClassificationMetrics(MetricCalculator):
         metrics = {}
         if input_valid:
             y_true, y_pred, y_score, labels, img_list = self.parse_input()
-            print('y_true: ', y_true)
-            print('y_pred: ', y_pred)
-            print('y_score: ', y_score)
-            print('labels: ', labels)
 
             accuracy, precision, recall, f1 = self.get_base_metrics(
                 y_true=y_true, y_pred=y_pred
