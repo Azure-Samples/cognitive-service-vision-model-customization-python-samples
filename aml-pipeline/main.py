@@ -197,7 +197,6 @@ def run(
                 "predictions": predictions
             }
             inference_results.append(img_inference_results)
-            print("inference_results: ", inference_results)
             time.sleep(10)
             ######
 
