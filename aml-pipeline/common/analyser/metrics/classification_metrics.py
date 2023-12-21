@@ -7,6 +7,7 @@ import mlflow
 import time
 import os
 from loguru import logger as logging
+import numpy as np
 from sklearn.metrics import (
     accuracy_score,
     f1_score,
@@ -43,7 +44,7 @@ class ClassificationMetrics(MetricCalculator):
         # check if number of categories is smaller than top_k_accuracy
         number_of_categories = len(self.ground_truth["categories"])
         for k in self.top_k_accuracy:
-            if k >= number_of_categories:
+            if k > number_of_categories:
                 msg = f"top_k_accuracy {k} is larger or equal to the total number of categories found in dataset"
                 logging.error(msg)
                 raise ValueError
@@ -69,6 +70,10 @@ class ClassificationMetrics(MetricCalculator):
             metrics["precision"] = precision
             metrics["recall"] = recall
             metrics["f1"] = f1
+
+            # For k = 2: Calculating top k accuracy score using probabilities for class 1
+            if self.top_k_accuracy == [2]:
+                y_score = np.array([score[0] for score in y_score])
 
             for k in self.top_k_accuracy:
                 top_acc = self.get_top_k_accuracy(
