@@ -22,7 +22,7 @@ inputs:
   model_name: "cat_dog_model_2"
   coco_json_url: "https://<storage_acc_name>.blob.core.windows.net/<container>/path/to/coco_info.json"
   train_aml_dataset_name: "cat_dog_asset"
-  train: False
+  train: True
   time_budget_in_hours: 6
   inference: True
   inference_data_path:
