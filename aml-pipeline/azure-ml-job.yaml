@@ -20,10 +20,9 @@ command: >-
 inputs:
   uvs_resource_key: ""
   model_name: "cat_dog_model_2"
-  # coco_json_url: "https://<storage_acc_name>.blob.core.windows.net/<container>/path/to/coco_info.json"
-  coco_json_url: "https://playgroundyvon3930433822.blob.core.windows.net/cats-dogs/coco_info.json"
+  coco_json_url: "https://<storage_acc_name>.blob.core.windows.net/<container>/path/to/coco_info.json"
   train_aml_dataset_name: "cat_dog_asset"
-  train: True
+  train: False
   time_budget_in_hours: 6
   inference: True
   inference_data_path:
