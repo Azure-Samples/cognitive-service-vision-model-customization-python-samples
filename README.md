@@ -6,6 +6,8 @@ Computer Vision's Model Customization is a custom model training service that al
 
 This is a sample repository demonstrating how to train and predict a custom model with Cognitive Service for Vision, using Python. To get started, check out [this tutorial in Python notebook](./docs/cognitive_service_vision_model_customization.ipynb).
 
+Moreover, you can use your familiar Azure Machine Learning (AML) environment and Data Science Tools (AML Data Assets or Jobs, CLIv2 or MLFlow) for training and evaluating your custom Florence model following [this documentation](./aml-pipeline/README.md).
+
 ### Product Recognition
 
 One of the scenarios we would like to introudce as a model customization scenario is Product Recognition. Computer Vision's product recognition service has been designed to be used in retail scenarios, where users would like to detect products, such as Consumer Packaged Goods (CPG), on a shelf. It comes with a set of APIs, a pre-built AI model, and a custom AI model that can be trained following the model customization guide above. You can try these out by following tutorials in Python notebooks: 

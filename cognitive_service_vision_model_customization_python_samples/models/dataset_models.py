@@ -11,7 +11,7 @@ class AnnotationKind(Enum):
 
 
 class AuthenticationKind(Enum):
-    MI = 'managedIdentity',
+    MI = 'managedIdentity'
     SAS = 'sas'
 
     def __str__(self) -> str:
@@ -26,21 +26,23 @@ class Authentication:
 
     @property
     def params(self):
-        return {
-            'kind': self.kind.value,
-            'sasToken': self.sas_token
+        params = {
+            'kind': self.kind.value
         }
+        if self.kind == AuthenticationKind.SAS:
+            params['sasToken'] = self.sas_token
+        return params
 
     @staticmethod
     def from_response(json):
         if not json:
             return None
 
-        return Authentication(json['kind'], json.get('sas'))
+        return Authentication(json['kind'], json.get('sasToken'))
 
 
 class Dataset:
-    def __init__(self, name: str, annotation_kind: Union[AnnotationKind, str], annotation_file_uris: List[str], authentication: Authentication = None, custom_properties: dict = None) -> None:
+    def __init__(self, name: str, annotation_kind: Union[AnnotationKind, str], annotation_file_uris: List[str], authentication: Authentication = Authentication(), custom_properties: dict = None) -> None:
         annotation_kind = AnnotationKind(annotation_kind) if isinstance(annotation_kind, str) else annotation_kind
         assert name
         assert annotation_file_uris
